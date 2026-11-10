@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solomun — Presskit</title>
+<meta name="description" content="Presskit de Solomun: bio, fechas, lanzamientos y booking. Maqueta Playskit.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0908; --bone:#f4f1ea; --yel:#ffe000;
+  /* paleta que cambia con el scroll: negro/blanco  <->  amarillo/negro */
+  --bg:rgb(10,9,8); --fg:rgb(244,241,234); --ac:rgb(255,224,0);
+  --sans:'Archivo',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif; --mono:'DM Mono',ui-monospace,monospace;
+  --pad:clamp(18px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--fg);-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-size:17px;line-height:1.5;overflow-x:hidden;background:var(--bg);color:var(--fg)}
+img{display:block;max-width:100%}
+a{color:inherit}
+main{position:relative;z-index:1}
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.big{font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:-.03em}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;font-stretch:100%;letter-spacing:-.02em}
+.idx{display:inline-flex;align-items:center;gap:10px}
+.idx::before{content:attr(data-n);border:1px solid currentColor;border-radius:99px;padding:2px 9px 1px;font-size:11px;letter-spacing:.06em}
+.mono.idx{font-family:var(--sans);font-stretch:125%;font-weight:600;letter-spacing:.24em;font-size:11px}
+
+/* ===== siluetas del flyer (fondo fijo que se mueve y cambia de color) ===== */
+.crowd{position:fixed;left:0;right:0;bottom:0;height:66vh;z-index:0;pointer-events:none;opacity:.5;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 42%);mask-image:linear-gradient(180deg,transparent 0,#000 42%)}
+.crowd .grp{position:absolute;top:0;bottom:0;left:-5%;right:-5%;will-change:transform}
+.crowd .g1{animation:sway1 13s ease-in-out infinite alternate}
+.crowd .g2{opacity:.55;animation:sway2 17s ease-in-out infinite alternate}
+.crowd canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.crowd .cv-k{opacity:0}
+@keyframes sway1{from{transform:translateX(-2.5%) scale(1.02)}to{transform:translateX(2.5%) scale(1.09)}}
+@keyframes sway2{from{transform:scaleX(-1) translateX(3%) scale(1.07)}to{transform:scaleX(-1) translateX(-3%) scale(1.0)}}
+
+/* barra */
+.bar{position:fixed;z-index:80;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px var(--pad);color:var(--fg)}
+.bar a{text-decoration:none}
+.bar nav{display:flex;gap:22px}
+@media(max-width:640px){.bar nav a:not(.cta){display:none}}
+.bar .cta{border:1px solid currentColor;padding:8px 16px;border-radius:99px}
+.bar .logo{font-family:var(--sans);font-stretch:125%;font-weight:900;font-size:15px;letter-spacing:-.01em;text-transform:uppercase}
+.bar nav a{font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.bar nav a sup{font-size:8px;letter-spacing:.05em;margin-right:6px;opacity:.6;vertical-align:top}
+
+/* botones */
+.btns{display:flex;gap:10px}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:13px 22px;border-radius:99px;border:1px solid currentColor;transition:background .25s,color .25s,border-color .25s}
+.btn.solid{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:hover{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+
+/* ===== PORTADA: video de él a pantalla completa + bio ===== */
+.story{position:relative}
+.stage{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink);color:var(--bone)}
+.figure{position:absolute;inset:0;z-index:0}
+.fig-in{position:absolute;inset:0;overflow:hidden;transform-origin:50% 38%;will-change:transform}
+.fig-in img,.fig-in canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 36%;filter:grayscale(1) contrast(1.3) brightness(1.05)}
+.vig{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(10,9,8,.62),rgba(10,9,8,0) 34%,rgba(10,9,8,0) 52%,rgba(10,9,8,.7))}
+/* "radiografía": el amarillo se multiplica con el video en blanco y negro (lo claro queda amarillo, lo oscuro queda negro) */
+.wash{position:absolute;inset:0;z-index:2;background:var(--yel);opacity:0;pointer-events:none;mix-blend-mode:multiply}
+img.src-art{display:none!important}
+.mega{position:absolute;z-index:3;left:0;right:0;top:calc(8vh + 24px);text-align:center;font-size:clamp(48px,14.4vw,280px);white-space:nowrap;pointer-events:none;color:var(--bone)}
+.sub{position:absolute;z-index:3;left:var(--pad);right:var(--pad);top:calc(8vh + 24px + clamp(48px,14.4vw,280px)*.92);display:flex;align-items:center;gap:18px;pointer-events:none;font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:clamp(10px,1vw,14px);letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
+.sub i{flex:1;height:1px;background:var(--bone);opacity:.85}
+.sub b{font-weight:600;opacity:.6}
+@media(max-width:560px){.sub{letter-spacing:.22em;gap:10px}.sub b{display:none}}
+.hero-meta{position:absolute;z-index:4;left:var(--pad);right:var(--pad);bottom:var(--pad);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.stage .btn{color:var(--bone);border-color:var(--bone);background:transparent}
+.stage .btn.solid{background:var(--bone);color:var(--ink)}
+.stage .btn:hover{background:var(--yel);border-color:var(--yel);color:var(--ink)}
+.bio-copy{position:relative;z-index:5;padding:var(--pad);max-width:640px;color:var(--ink)}
+.bio-copy h2{font-size:clamp(40px,6.4vw,104px);margin:14px 0 24px}
+.bio-copy p{font-size:clamp(17px,1.5vw,21px);margin-bottom:14px;max-width:34em}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;margin-top:28px;border-top:2px solid var(--ink);padding-top:20px}
+.facts b{display:block;font-family:var(--sans);font-stretch:125%;font-weight:900;font-size:clamp(26px,3vw,44px);line-height:1}
+.facts span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+/* con JS: pin + animación; sin JS todo queda visible en bloque */
+.js .story .bio-copy{position:absolute;right:var(--pad);top:50%;width:min(46vw,620px);padding:clamp(22px,2.6vw,42px);background:var(--yel);opacity:0}
+@media(max-width:820px){
+  .mega{top:calc(9vh + 20px)}
+  .js .story .bio-copy{left:var(--pad);right:var(--pad);top:auto;bottom:4vh;transform:none;width:auto;padding:18px}
+  .js .story .bio-copy h2{font-size:clamp(34px,10vw,56px);margin:8px 0 12px}
+  .js .story .bio-copy p{font-size:16px}
+  .facts{gap:10px 18px;margin-top:14px;padding-top:12px}
+}
+
+/* ===== marquee (franja que invierte los colores) ===== */
+.marquee{background:var(--fg);color:var(--bg);overflow:hidden;white-space:nowrap;padding:16px 0}
+.marquee div{display:inline-block;animation:mq 38s linear infinite;font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;font-size:clamp(20px,2.6vw,36px);letter-spacing:-.01em}
+.marquee span{margin:0 28px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===== flyers ===== */
+.tour{position:relative}
+.tour-head{padding:clamp(72px,10vw,140px) var(--pad) 24px}
+.tour-head h2{font-size:clamp(46px,10.5vw,190px)}
+.tour-head p{margin-top:18px;max-width:30em}
+.rail-wrap{overflow:hidden}
+.rail{display:flex;gap:clamp(14px,2vw,28px);padding:20px var(--pad) 60px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.flyer{flex:0 0 auto;width:min(72vw,calc(66vh*.81));scroll-snap-align:center;position:relative}
+.flyer img{width:100%;height:auto;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);clip-path:inset(.5%)}
+.flyer:nth-child(odd){transform:rotate(-1.6deg)}
+.flyer:nth-child(even){transform:rotate(1.4deg) translateY(18px)}
+.flyer figcaption{margin-top:14px;display:flex;justify-content:space-between;gap:10px}
+@media(min-width:900px){.flyer{width:min(34vw,calc(68vh*.81))}}
+.js-rail{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.js-rail .tour-head{padding:76px var(--pad) 0}
+.js-rail .tour-head h2{font-size:clamp(40px,7vw,120px)}
+.js-rail .tour-head h2 br{display:none}
+.js-rail .tour-head p:last-child{margin-top:8px;font-size:15px}
+.js-rail .rail{overflow:visible;scroll-snap-type:none;width:max-content;will-change:transform;padding-bottom:20px}
+.js-rail .flyer{width:auto}
+.js-rail .flyer img{width:auto;height:clamp(240px,calc(100svh - 330px),780px)}
+
+.dates{padding:clamp(48px,7vw,100px) var(--pad)}
+.dates h3{font-size:clamp(34px,6vw,96px);margin-bottom:28px}
+.dates ul{list-style:none;border-top:2px solid currentColor}
+.dates li{display:grid;grid-template-columns:110px 1.2fr 1.6fr 60px;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid currentColor}
+.dates li{border-bottom-color:color-mix(in srgb,currentColor 28%,transparent)}
+.dates li .city{font-family:var(--sans);font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:clamp(18px,2.2vw,30px);line-height:1}
+.dates li .venue{font-family:var(--serif);font-size:clamp(18px,1.9vw,26px)}
+.dates li .tag{justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.dates li.past{opacity:.4}
+.dates li.past .tag::after{content:"pasó"}
+.dates li:not(.past) .tag::after{content:"próx."}
+.dates li:not(.past) .tag{border:1px solid currentColor;border-radius:99px;padding:2px 10px}
+@media(max-width:640px){.dates li{grid-template-columns:78px 1fr;grid-template-areas:"d c" "d v"}.dates li .d{grid-area:d}.dates li .city{grid-area:c}.dates li .venue{grid-area:v}.dates li .tag{display:none}}
+.dates .src{margin-top:18px;opacity:.6}
+
+/* ===== lanzamientos ===== */
+.rel{padding:clamp(64px,9vw,130px) var(--pad) clamp(40px,5vw,70px)}
+.rel h2{font-size:clamp(40px,8vw,140px);margin-bottom:34px}
+.rel ol{list-style:none;border-top:2px solid currentColor}
+.rel li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:22px 0;border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent);transition:padding .35s,color .35s;cursor:default}
+.rel li:hover{padding-left:20px;color:var(--ac)}
+.rel li .t{font-family:var(--serif);font-size:clamp(30px,5.4vw,84px);line-height:1}
+.rel li .m{text-align:right;white-space:nowrap}
+
+/* ===== escena (foto en blanco y negro) ===== */
+.live{position:relative;height:120vh;overflow:hidden}
+.live img{position:absolute;left:0;top:-15%;width:100%;height:130%;object-fit:cover;object-position:30% 55%;filter:grayscale(1) contrast(1.1);will-change:transform}
+.live::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg),transparent 24%,transparent 66%,var(--bg))}
+.live .cap{position:absolute;z-index:2;left:var(--pad);bottom:12vh;max-width:760px;color:var(--bone)}
+.live .cap h2{font-size:clamp(40px,8vw,130px)}
+
+/* ===== booking ===== */
+.book{padding:clamp(64px,9vw,130px) var(--pad)}
+.book h2{font-size:clamp(46px,12vw,230px)}
+.book .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;margin-top:40px;border-top:2px solid currentColor}
+.book .cell{padding:22px 20px 22px 0;border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent)}
+.book .cell p.l{opacity:.65;margin-bottom:6px}
+.book .cell a{font-family:var(--serif);font-size:clamp(20px,2.2vw,30px);word-break:break-word;text-decoration:none;border-bottom:1px solid currentColor}
+.book .cell a:hover{background:var(--fg);color:var(--bg)}
+.book .btns{margin-top:36px}
+
+/* ===== créditos + cierre ===== */
+.finale{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;padding:clamp(48px,6vw,90px) var(--pad) 0}
+.finale h2{font-size:clamp(34px,6vw,90px);margin-bottom:22px}
+.finale dl{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:14px 24px;border-top:2px solid currentColor;padding-top:20px;max-width:900px}
+.finale dt{opacity:.7}
+.finale dd{font-family:var(--serif);font-size:clamp(18px,1.7vw,24px);line-height:1.3}
+.finale .made{margin-top:42px;opacity:.65}
+.finale .wordmark{margin:auto -4vw 0;text-align:center;font-size:clamp(48px,14.4vw,280px);line-height:.84;padding-top:60px;white-space:nowrap}
+@media(max-width:640px){.finale dl{grid-template-columns:1fr;gap:4px}.finale dd{margin-bottom:14px}}
+
+@media(prefers-reduced-motion:reduce){.marquee div{animation:none}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="crowd" aria-hidden="true"><div class="grp g1"></div><div class="grp g2"></div></div>
+
+<header class="bar">
+  <a href="#top" class="logo">Solomun</a>
+  <nav>
+    <a href="#bio"><sup>01</sup>Bio</a><a href="#fechas"><sup>02</sup>Fechas</a><a href="#musica"><sup>03</sup>Música</a><a href="#booking" class="cta">Booking</a>
+  </nav>
+</header>
+
+<main>
+<!-- ===== PORTADA + BIO ===== -->
+<section class="story" id="top">
+  <div class="stage">
+    <div class="figure">
+      <div class="fig-in">
+        <img class="dance-img" src="img/baila/a/f01.jpg" alt="Solomun bailando con auriculares" fetchpriority="high">
+      </div>
+    </div>
+    <div class="vig"></div>
+    <div class="wash"></div>
+    <img class="src-art" src="img/flyer-punta-del-este.png" alt="" hidden>
+
+    <h1 class="mega big">Solomun</h1>
+    <p class="sub"><span>DJ · Producer</span><i></i><b>Diynamic</b><i></i><span>Hamburgo</span></p>
+
+    <div class="hero-meta">
+      <p class="mono">Diynamic · Hamburgo<br>Presskit 2026 — 27</p>
+      <div class="btns">
+        <a class="btn solid" href="#booking">Booking</a>
+        <a class="btn" href="https://linkin.bio/solomun" target="_blank" rel="noopener">Escuchar</a>
+      </div>
+    </div>
+
+    <div class="bio-copy" id="bio">
+      <p class="mono idx" data-n="01">Bio</p>
+      <h2 class="big">Mladen<br><em class="s">Solomun</em></h2>
+      <p>Nació el 27 de diciembre de 1975 en Travnik, Bosnia, y creció en Hamburgo. A los 16 ya pasaba discos en un centro juvenil; trabajó unos cinco años en cine antes de dedicarse a la música.</p>
+      <p>A fines de 2005 fundó Diynamic con Adriano Trolio: “Do It Yourself”. Hoy es uno de los nombres más grandes de la música electrónica.</p>
+      <div class="facts">
+        <div><b>2012</b><span>DJ del Año · Mixmag</span></div>
+        <div><b>2005</b><span>Nace Diynamic</span></div>
+        <div><b>2,3 M</b><span>Seguidores en IG</span></div>
+        <div><b>+1</b><span>Residencia en Pacha</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>DJ del Año · Mixmag 2012</span><span>✦</span><span>Diynamic</span><span>✦</span><span>Solomun +1 · Pacha</span><span>✦</span><span>Mejor productor · DJ Awards 2012</span><span>✦</span><span>Remix del Año · RA 2011</span><span>✦</span>
+  <span>DJ del Año · Mixmag 2012</span><span>✦</span><span>Diynamic</span><span>✦</span><span>Solomun +1 · Pacha</span><span>✦</span><span>Mejor productor · DJ Awards 2012</span><span>✦</span><span>Remix del Año · RA 2011</span><span>✦</span>
+</div></div>
+
+<!-- ===== FLYERS ===== -->
+<section class="tour" id="fechas">
+  <div class="tour-head">
+    <p class="mono idx" data-n="02">Fechas</p>
+    <h2 class="big">Around<br><em class="s">the world</em></h2>
+    <p>Los flyers de sus shows, todos juntos. Sudamérica, fin de año en Mendoza y Punta del Este, Mar del Plata y Diynamic Miami.</p>
+  </div>
+  <div class="rail-wrap">
+    <div class="rail" id="rail">
+      <figure class="flyer"><img src="img/flyer-tour-sudamerica.png" alt="Flyer South America Shows" loading="lazy"><figcaption class="mono"><span>South America</span><span>Oct 26 — Ene 27</span></figcaption></figure>
+      <figure class="flyer"><img src="img/flyer-mendoza.png" alt="Flyer Solomun Mendoza" loading="lazy"><figcaption class="mono"><span>Mendoza</span><span>31 dic 2026</span></figcaption></figure>
+      <figure class="flyer"><img src="img/flyer-punta-del-este.png" alt="Flyer Solomun Punta del Este" loading="lazy"><figcaption class="mono"><span>Punta del Este</span><span>29 dic 2026</span></figcaption></figure>
+      <figure class="flyer"><img src="img/flyer-mar-del-plata.png" alt="Flyer Solomun Mar del Plata" loading="lazy"><figcaption class="mono"><span>Mar del Plata</span><span>2 ene 2027</span></figcaption></figure>
+      <figure class="flyer"><img src="img/flyer-diynamic-miami.png" alt="Flyer Diynamic Miami" loading="lazy"><figcaption class="mono"><span>Diynamic Miami</span><span>4 dic 2026</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="dates">
+  <h3 class="big">Calendario</h3>
+  <ul id="dates">
+    <li data-date="2026-10-23"><span class="d mono">23/10/26</span><span class="city">Córdoba</span><span class="venue">La Estación XL</span><span class="tag mono"></span></li>
+    <li data-date="2026-10-24"><span class="d mono">24/10/26</span><span class="city">Buenos Aires</span><span class="venue">Mandarine Park</span><span class="tag mono"></span></li>
+    <li data-date="2026-10-30"><span class="d mono">30/10/26</span><span class="city">Santiago</span><span class="venue">Espacio Riesco</span><span class="tag mono"></span></li>
+    <li data-date="2026-10-31"><span class="d mono">31/10/26</span><span class="city">Curitiba</span><span class="venue">Pedreira Paulo Leminski</span><span class="tag mono"></span></li>
+    <li data-date="2026-11-01"><span class="d mono">01/11/26</span><span class="city">São Paulo</span><span class="venue">Parque Villa-Lobos</span><span class="tag mono"></span></li>
+    <li data-date="2026-12-04"><span class="d mono">04/12/26</span><span class="city">Diynamic Miami</span><span class="venue">Factory Town · Insomniac</span><span class="tag mono"></span></li>
+    <li data-date="2026-12-29"><span class="d mono">29/12/26</span><span class="city">Punta del Este</span><span class="venue">Open Park</span><span class="tag mono"></span></li>
+    <li data-date="2026-12-31"><span class="d mono">31/12/26</span><span class="city">Mendoza</span><span class="venue">Teatro Griego Frank Romero Day</span><span class="tag mono"></span></li>
+    <li data-date="2027-01-02"><span class="d mono">02/01/27</span><span class="city">Mar del Plata</span><span class="venue">Mute</span><span class="tag mono"></span></li>
+  </ul>
+  <p class="src mono">Fuente: flyers oficiales publicados en @solomun. Fechas sujetas a cambios.</p>
+</section>
+
+<!-- ===== MÚSICA ===== -->
+<section class="rel" id="musica">
+  <p class="mono idx" data-n="03">Música</p>
+  <h2 class="big">Discos</h2>
+  <ol>
+    <li><span class="t">Dance Baby</span><span class="m mono">Álbum · Diynamic · 2009</span></li>
+    <li><span class="t">Customer Is King</span><span class="m mono">EP · Diynamic · 2018</span></li>
+    <li><span class="t">Home</span><span class="m mono">Diynamic · 2020</span></li>
+    <li><span class="t">Nobody Is Not Loved</span><span class="m mono">NINL · 2021</span></li>
+  </ol>
+</section>
+
+<!-- ===== ESCENA ===== -->
+<section class="live" id="live">
+  <img src="img/solomun-cdj.png" alt="Solomun detrás de los CDJ al aire libre" loading="lazy">
+  <div class="cap">
+    <p class="mono idx" data-n="04">En vivo</p>
+    <h2 class="big">Una pista,<br><em class="s">mil emociones</em></h2>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section class="book" id="booking">
+  <p class="mono idx" data-n="05">Booking</p>
+  <h2 class="big">Book<br><em class="s">Solomun</em></h2>
+  <div class="grid">
+    <div class="cell"><p class="l mono">Booking · WME</p><a href="mailto:JSchumann@WMEAgency.com">JSchumann@WMEAgency.com</a></div>
+    <div class="cell"><p class="l mono">Management</p><a href="mailto:management@solomun.org">management@solomun.org</a></div>
+    <div class="cell"><p class="l mono">Demos · Diynamic</p><a href="mailto:solomundemo@diynamic.com">solomundemo@diynamic.com</a></div>
+    <div class="cell"><p class="l mono">Instagram</p><a href="https://www.instagram.com/solomun/" target="_blank" rel="noopener">@solomun</a></div>
+  </div>
+  <div class="btns">
+    <a class="btn solid" href="mailto:JSchumann@WMEAgency.com">Escribir a booking</a>
+    <a class="btn" href="https://linkin.bio/solomun" target="_blank" rel="noopener">Todos sus links</a>
+  </div>
+</section>
+
+<!-- ===== FOTÓGRAFOS + CIERRE ===== -->
+<section class="finale" id="creditos">
+  <div>
+    <p class="mono idx" data-n="06" style="margin-bottom:14px">Créditos</p>
+    <h2 class="big">Fotógrafos</h2>
+    <dl>
+      <dt class="mono">Fotos y video</dt><dd>Archivo público de @solomun en Instagram. Todos los derechos y créditos pertenecen a sus fotógrafos.</dd>
+      <dt class="mono">Nombre del fotógrafo</dt><dd>A completar con el equipo de Solomun, foto por foto.</dd>
+      <dt class="mono">Flyers</dt><dd>Diseño del equipo de Solomun y de las productoras: BAN, G5, Bombo, Proshow, KOI, Liveart, Insomniac · Factory Town.</dd>
+    </dl>
+    <p class="made mono">Maqueta no oficial · hecha por Playskit (@playskit.dj) para presentarle a Solomun cómo podría ser su presskit.</p>
+  </div>
+  <p class="wordmark big" aria-hidden="true">Solomun</p>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  // calendario: marca fechas pasadas
+  var today = new Date(); today.setHours(0,0,0,0);
+  document.querySelectorAll('#dates li').forEach(function(li){
+    if (new Date(li.dataset.date+'T00:00:00') < today) li.classList.add('past');
+  });
+
+  // ===== portada: Solomun bailando (cuadros de su video, solo las partes donde sale él) en loop de ida y vuelta =====
+  (function(){
+    var fig = document.querySelector('.fig-in'), first = fig && fig.querySelector('img.dance-img');
+    if (!fig || !first) return;
+    // dos tomas de su video: el movimiento cambia, así que la portada alterna entre las dos
+    var CLIPS = [{dir:'img/baila/a/', n:21}, {dir:'img/baila/b/', n:17}];
+    var total = 0, loaded = 0;
+    CLIPS.forEach(function(cl){
+      cl.frames = [];
+      for (var i=1;i<=cl.n;i++){
+        var im = new Image(); im.src = cl.dir + 'f' + (i<10?'0'+i:i) + '.jpg'; total++;
+        im.onload = function(){ if (++loaded === total) start(); };
+        cl.frames.push(im);
+      }
+    });
+    function start(){
+      var f0 = CLIPS[0].frames[0];
+      var c = document.createElement('canvas'); c.width = f0.naturalWidth; c.height = f0.naturalHeight;
+      c.setAttribute('role','img'); c.setAttribute('aria-label', first.alt);
+      var x = c.getContext('2d'); fig.insertBefore(c, first); first.style.display = 'none';
+      var off = document.createElement('canvas'); off.width = c.width; off.height = c.height;
+      var ox = off.getContext('2d');
+      var ci = 0, idx = 0, dir = 1, last = 0, vis = true, fade = 0, laps = 0;
+      if ('IntersectionObserver' in window) new IntersectionObserver(function(e){ vis = e[0].isIntersecting; }).observe(fig);
+      x.drawImage(f0,0,0);
+      (function tick(t){
+        requestAnimationFrame(tick);
+        if (!vis || document.hidden || t-last < 83) return;      // ~12 cuadros por segundo, pausa si no se ve
+        last = t;
+        var cl = CLIPS[ci];
+        x.globalAlpha = 1; x.drawImage(cl.frames[idx],0,0);
+        if (fade > 0){ x.globalAlpha = fade; x.drawImage(off,0,0); x.globalAlpha = 1; fade -= .34; }   // mezcla corta entre tomas
+        idx += dir;
+        if (idx >= cl.n-1 || idx <= 0){
+          dir = -dir;
+          if (idx <= 0 && dir === 1){                            // fin de ida y vuelta: pasa a la otra toma
+            ox.drawImage(c,0,0); ci = (ci+1) % CLIPS.length; idx = 0; fade = 1;
+          }
+        }
+      })(0);
+    }
+  })();
+
+  // ===== siluetas del flyer: se generan UNA vez (blanco y negro) y se mueven con CSS =====
+  function sil(img, tint, cls, crop){
+    var sh = Math.round(img.naturalHeight*(crop.y1-crop.y0)), sy = Math.round(img.naturalHeight*crop.y0), sw = img.naturalWidth;
+    var w = Math.min(sw, 900), h = Math.round(w*sh/sw);
+    var c = document.createElement('canvas'); c.width = w; c.height = h; c.className = cls;
+    var x = c.getContext('2d'); x.drawImage(img,0,sy,sw,sh,0,0,w,h);
+    var d = x.getImageData(0,0,w,h), p = d.data;
+    for (var i=0;i<p.length;i+=4){
+      var l = (0.299*p[i]+0.587*p[i+1]+0.114*p[i+2])/255;
+      l = Math.max(0, Math.min(1, (l-crop.lo)/(crop.hi-crop.lo)));
+      p[i]=tint[0]; p[i+1]=tint[1]; p[i+2]=tint[2]; p[i+3]=Math.round(255*(1-l));   // lo oscuro del flyer = silueta
+    }
+    x.putImageData(d,0,0);
+    return c;
+  }
+  function clone(c){ var n = document.createElement('canvas'); n.width = c.width; n.height = c.height; n.className = c.className; n.getContext('2d').drawImage(c,0,0); return n; }
+  var sa = document.querySelector('img.src-art');
+  function buildCrowd(){
+    try{
+      var crop = {y0:.44, y1:.86, lo:.44, hi:.79};            // solo las siluetas de su flyer: sin título ni logos
+      var w = sil(sa,[244,241,234],'cv-w',crop), k = sil(sa,[10,9,8],'cv-k',crop);
+      var g1 = document.querySelector('.crowd .g1'), g2 = document.querySelector('.crowd .g2');
+      g1.appendChild(w); g1.appendChild(k); g2.appendChild(clone(w)); g2.appendChild(clone(k));
+    }catch(e){ /* sin siluetas, la página sigue andando */ }
+  }
+  if (sa) { if (sa.complete && sa.naturalWidth) buildCrowd(); else sa.addEventListener('load', buildCrowd); }
+
+  if (!window.gsap || !window.ScrollTrigger) return;         // sin JS/CDN: todo queda visible
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;   // solo apaga el scroll suave
+  document.documentElement.classList.add('js');
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (window.Lenis && !calm){
+    var lenis = new Lenis({lerp:.1});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // ===== tema: negro/blanco  <->  amarillo/negro, cambia con las secciones =====
+  var THEMES = {
+    dark:   {bg:'rgb(10,9,8)',   fg:'rgb(244,241,234)', ac:'rgb(255,224,0)'},
+    yellow: {bg:'rgb(255,224,0)', fg:'rgb(10,9,8)',      ac:'rgb(10,9,8)'}
+  };
+  var cur = 'dark';
+  function setTheme(t){
+    if (t === cur) return; cur = t; var th = THEMES[t];
+    gsap.to(document.documentElement,{'--bg':th.bg,'--fg':th.fg,'--ac':th.ac,duration:.6,ease:'power2.out',overwrite:'auto'});
+    gsap.to('.crowd .cv-w',{opacity:t==='dark'?1:0,duration:.6,overwrite:'auto'});
+    gsap.to('.crowd .cv-k',{opacity:t==='dark'?0:1,duration:.6,overwrite:'auto'});
+  }
+
+  var mm = gsap.matchMedia();
+
+  // ===== portada -> bio: el video de él sigue, se tiñe de amarillo y aparece la bio =====
+  function story(desktop){
+    if (desktop) gsap.set('.bio-copy',{yPercent:-50});       // centrado vertical (lo maneja GSAP para no pisarse con la animación)
+    var tl = gsap.timeline({
+      scrollTrigger:{trigger:'.stage', start:'top top', end:'+=240%', pin:true, scrub:.8, anticipatePin:1,
+        onUpdate:function(self){ setTheme(self.progress > .5 ? 'yellow' : 'dark'); }}
+    });
+    tl.fromTo('.fig-in',{scale:1},{scale:desktop?1.12:1.1, duration:2.2, ease:'none'},0)
+      .to('.mega',{yPercent:-70, opacity:0, duration:.7, ease:'power1.in'},0)
+      .to('.sub',{yPercent:-120, opacity:0, duration:.6, ease:'power1.in'},0)
+      .to('.hero-meta',{opacity:0, y:30, duration:.4},0)
+      .to('.wash',{opacity:1, duration:.8, ease:'none'},.6)
+      .to('.fig-in canvas, .fig-in img',{filter:'grayscale(1) contrast(1.75) brightness(1.6)', duration:.8, ease:'none'},.6)   // más luz para que el amarillo se lea como radiografía
+      .fromTo('.bio-copy',{opacity:0, y:40},{opacity:1, y:0, duration:.8, ease:'power2.out'},1.35)
+      .to({}, {duration:.6});    // pausa para leer
+  }
+  mm.add('(min-width: 821px)', function(){ story(true); });
+  mm.add('(max-width: 820px)', function(){ story(false); });
+
+  // ===== flyers: carril horizontal pineado =====
+  mm.add('(min-width: 900px)', function(){
+    var rail = document.getElementById('rail');
+    var tour = document.querySelector('.tour');
+    tour.classList.add('js-rail');
+    var dist = function(){ return rail.scrollWidth - window.innerWidth; };
+    gsap.to(rail,{
+      x:function(){ return -dist(); }, ease:'none',
+      scrollTrigger:{trigger:'.tour', start:'top top', end:function(){ return '+='+dist(); }, pin:true, scrub:.6, invalidateOnRefresh:true}
+    });
+    return function(){ tour.classList.remove('js-rail'); };
+  });
+
+  // ===== qué sección pide qué tema (se alternan al bajar) =====
+  [['.tour','dark'],['.dates','yellow'],['.rel','dark'],['.live','dark'],['.book','yellow'],['.finale','dark']].forEach(function(p){
+    ScrollTrigger.create({trigger:p[0], start:'top 60%', end:'bottom 60%', onToggle:function(self){ if (self.isActive) setTheme(p[1]); }});
+  });
+
+  // ===== foto en vivo: parallax suave =====
+  gsap.to('.live img',{yPercent:12, ease:'none', scrollTrigger:{trigger:'.live', start:'top bottom', end:'bottom top', scrub:true}});
+})();
+</script>
+</body>
+</html>
