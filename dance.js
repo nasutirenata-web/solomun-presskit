@@ -40,7 +40,7 @@
       solo.style.transform='translateX(-50%)';
       dancers.push({sl:slices(solo,'img/baila-mujer.png'), st:{w:2.2,A:8,J:3,tw:5}, ph:1.3, k:k++, mirror:0});
     }
-    var total=dancers.length, T=2.4;
+    var total=dancers.length, T=1.7, SPEED=1.6;
     var reduce=false;
     function frame(ms){
       requestAnimationFrame(frame);
@@ -49,7 +49,7 @@
       for(var d=0; d<total; d++){
         var D=dancers[d], c=((D.k*T+T/2)), dist=Math.abs(((t-c)%cyc+cyc*1.5)%cyc-cyc/2)/T;   // distancia a su turno
         var e=.28+.72*Math.max(0,1-dist*1.1);
-        var s=D.st, w=s.w, A=s.A*e, J=s.J*e*e, tw=s.tw*e;
+        var s=D.st, w=s.w*SPEED, A=s.A*e, J=s.J*e*e, tw=s.tw*e;
         for(var i=0;i<N;i++){
           var S=D.sl[i], h=S.h, hh=Math.pow(h,1.25);
           var ph=t*w+D.ph-h*2.4;                        // la onda sube desde los pies
