@@ -13,8 +13,8 @@
     var arr=[];
     for(var i=0;i<N;i++){
       var s=document.createElement('div'); s.className='sl';
-      var top=(i/N*100-.5).toFixed(2), bot=(100-(i+1)/N*100-.5).toFixed(2);
-      s.style.cssText='position:absolute;inset:0;background:url('+url+') center bottom/100% 100% no-repeat;will-change:transform;clip-path:inset('+Math.max(0,top)+'% 0 '+Math.max(0,bot)+'% 0)';
+      var top=(i/N*100-1.3).toFixed(2), bot=(100-(i+1)/N*100-1.3).toFixed(2);
+      s.style.cssText='position:absolute;inset:0;background:var(--cc,#f4f1ea);-webkit-mask:url('+url+') center bottom/100% 100% no-repeat;mask:url('+url+') center bottom/100% 100% no-repeat;transition:background-color .9s ease;will-change:transform;clip-path:inset('+Math.max(0,top)+'% 0 '+Math.max(0,bot)+'% 0)';
       host.appendChild(s); arr.push({el:s,h:1-(i+.5)/N});   // h: 0 en los pies, 1 en la cabeza
     }
     return arr;
@@ -30,7 +30,7 @@
     var k=0;
     [].forEach.call(crowd.querySelectorAll('.grp'),function(g,gi){
       [].forEach.call(g.querySelectorAll('.dancer'),function(d,di){
-        var url='img/baila-'+(di+1)+'.png', st=styles[(di+gi*2)%4];
+        var url='img/baila-'+(di+1)+'.png', st=styles[(di+gi*2)%4]; d.style.opacity=[1,.78,.92,.68][(di+gi)%4];   // tonos distintos del mismo color para que se lean las personas
         dancers.push({sl:slices(d,url), st:st, ph:Math.random()*6.28, k:k++, mirror:gi});
       });
     });

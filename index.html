@@ -35,7 +35,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:n
 .crowd{overflow:hidden;position:fixed;left:0;right:0;bottom:0;height:66vh;z-index:0;pointer-events:none;opacity:.95;transition:filter .7s;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 6%);mask-image:linear-gradient(180deg,transparent 0,#000 6%)}
 /* cada bailarín es una capa propia: se mueve solo */
-.crowd.bw{filter:grayscale(1) contrast(1.1)}
+.crowd{--cc:#ff6a2c}
 .crowd .grp{position:absolute;bottom:0;height:100%;aspect-ratio:1080/745}
 .crowd .g1{left:0}
 .crowd .g2{right:0;transform:scaleX(-1)}
@@ -267,7 +267,7 @@ img.src-art{display:none!important}
 .bar .logo{display:inline-flex;align-items:center;height:38px;font-size:0}
 .bar .logo-img{display:block;height:32px;aspect-ratio:447/140;background:currentColor;-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
 </style>
-<link rel="stylesheet" href="experience.css?v=37">
+<link rel="stylesheet" href="experience.css?v=38">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -400,7 +400,7 @@ img.src-art{display:none!important}
 
 <!-- ===== ESCENA ===== -->
 <section class="live" id="live">
-  <img class="vid" src="img/baila/c/f01.jpg" alt="Solomun bailando con el público" loading="lazy">
+  <img class="vid" src="img/baila/b/f01.jpg" alt="Solomun bailando con el público" loading="lazy">
   <div class="cap">
     <p class="mono idx" data-n="04">En vivo</p>
     <h2 class="big">Una pista,<br><em class="s">mil emociones</em></h2>
@@ -456,7 +456,7 @@ img.src-art{display:none!important}
     var fig = document.querySelector('.fig-in'), first = fig && fig.querySelector('img.dance-img');
     if (!fig || !first) return;
     // dos tomas de su video: el movimiento cambia, así que la portada alterna entre las dos
-    var CLIPS = [{dir:'img/baila/a/', n:21}, {dir:'img/baila/b/', n:17}];
+    var CLIPS = [{dir:'img/baila/a/', n:21}];
     var total = 0, loaded = 0;
     CLIPS.forEach(function(cl){
       cl.frames = [];
@@ -585,9 +585,12 @@ img.src-art{display:none!important}
   [['.tour','dark'],['.dates','yellow'],['.rel','dark'],['.live','dark'],['.book','yellow'],['.finale','dark']].forEach(function(p){
     ScrollTrigger.create({trigger:p[0], start:'top 60%', end:'bottom 60%', onToggle:function(self){ if (self.isActive) setTheme(p[1]); }});
   });
-  // en Discos el fondo baila en blanco y negro; en el resto, a color
-  var bw=function(on){ return function(){ var c=document.querySelector('.crowd'); if (c) c.classList.toggle('bw', on); }; };
-  ScrollTrigger.create({trigger:'.rel', start:'top 70%', end:'bottom 30%', onEnter:bw(true), onEnterBack:bw(true), onLeave:bw(false), onLeaveBack:bw(false)});
+  // un solo color por página para toda la gente de fondo (colores de sus flyers)
+  var CROWD_COLORS={'.dates':'#ff6a2c','.rel':'#6f8df0','.live':'#cfd400','.book':'#ff5a52','.finale':'#6fe3b3'};
+  Object.keys(CROWD_COLORS).forEach(function(sel){
+    var set=function(){ var c=document.querySelector('.crowd'); if(c) c.style.setProperty('--cc',CROWD_COLORS[sel]); };
+    ScrollTrigger.create({trigger:sel, start:'top 60%', end:'bottom 60%', onEnter:set, onEnterBack:set});
+  });
 
   // ===== foto en vivo: parallax suave =====
   gsap.to('.live .vid',{yPercent:12, ease:'none', scrollTrigger:{trigger:'.live', start:'top bottom', end:'bottom top', scrub:true}});
@@ -595,7 +598,7 @@ img.src-art{display:none!important}
 </script>
 <script src="experience.js?v=5"></script>
 <script src="deck.js?v=5"></script>
-<script src="live.js?v=1"></script>
-<script src="dance.js?v=2"></script>
+<script src="live.js?v=2"></script>
+<script src="dance.js?v=7"></script>
 </body>
 </html>
