@@ -32,24 +32,26 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:n
 .mono.idx{font-family:var(--sans);font-stretch:125%;font-weight:600;letter-spacing:.24em;font-size:11px}
 
 /* ===== siluetas del flyer (fondo fijo que se mueve y cambia de color) ===== */
-.crowd{position:fixed;left:0;right:0;bottom:0;height:46vh;z-index:0;pointer-events:none;opacity:.6;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 35%);mask-image:linear-gradient(180deg,transparent 0,#000 35%)}
+.crowd{position:fixed;left:0;right:0;bottom:0;height:56vh;z-index:0;pointer-events:none;opacity:.88;filter:blur(1.6px) saturate(1.1);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%);mask-image:linear-gradient(180deg,transparent 0,#000 14%)}
 .crowd .grp{position:absolute;top:0;bottom:0;left:-5%;right:-5%;will-change:transform}
 .crowd .g1{transform-origin:50% 100%;animation:sway1 .95s ease-in-out infinite alternate}
 .crowd .g2{opacity:.55;transform-origin:50% 100%;animation:sway2 1.3s ease-in-out infinite alternate}
 .crowd canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.crowd .tint{position:absolute;inset:0;background:#f4f1ea;-webkit-mask-size:auto 100%;mask-size:auto 100%;-webkit-mask-position:50% 100%;mask-position:50% 100%;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x}
+.crowd .tint{position:absolute;inset:0;background:linear-gradient(90deg,#ff4a3d,#1f3fd1,#7a2db0,#10b5a3,#ff4a3d,#1f3fd1,#7a2db0,#10b5a3,#ff4a3d) 0 0/200% 100%;animation:colshift 7s linear infinite;-webkit-mask-size:auto 100%;mask-size:auto 100%;-webkit-mask-position:50% 100%;mask-position:50% 100%;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x}
+@keyframes colshift{to{background-position:200% 0}}
+.crowd .g2 .tint{animation-duration:11s;animation-direction:reverse}
 @keyframes sway1{0%{transform:translate(-1.6%,0) rotate(-1.4deg) scaleY(1)}50%{transform:translate(0,-2.2%) rotate(0deg) scaleY(1.03)}100%{transform:translate(1.6%,0) rotate(1.4deg) scaleY(1)}}
 @keyframes sway2{0%{transform:scaleX(-1) translate(1.8%,-1.5%) rotate(1.6deg) scaleY(1.03)}100%{transform:scaleX(-1) translate(-1.8%,0) rotate(-1.6deg) scaleY(1)}}
 
 /* barra */
 .bar{position:fixed;z-index:80;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px var(--pad);color:var(--fg)}
 .bar a{text-decoration:none}
-.bar nav{display:flex;gap:22px}
+.bar nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px)}
 @media(max-width:640px){.bar nav a:not(.cta){display:none}}
-.bar .cta{border:1px solid currentColor;padding:8px 16px;border-radius:99px}
-.bar .logo{font-family:var(--sans);font-stretch:125%;font-weight:900;font-size:15px;letter-spacing:-.01em;text-transform:uppercase}
-.bar nav a{font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.bar .cta{border:1px solid currentColor;padding:0 20px;border-radius:99px;height:38px}
+.bar .logo{display:inline-flex;align-items:center;height:38px;line-height:1;font-family:var(--sans);font-stretch:125%;font-weight:900;font-size:15px;letter-spacing:-.01em;text-transform:uppercase}
+.bar nav a{display:inline-flex;align-items:center;height:38px;line-height:1;font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
 .bar nav a sup{font-size:8px;letter-spacing:.05em;margin-right:6px;opacity:.6;vertical-align:top}
 
 /* botones */
