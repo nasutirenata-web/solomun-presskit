@@ -99,12 +99,10 @@ img.src-art{display:none!important}
 /* ===== marquee (franja que invierte los colores) ===== */
 .marquee{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border-block:1px solid rgba(255,255,255,.3);color:var(--fg);overflow:hidden;white-space:nowrap;padding:clamp(28px,4vw,52px) 0;position:relative;z-index:2}
 .marquee div{display:inline-block;will-change:transform;font-family:var(--serif);font-style:italic;font-stretch:100%;font-weight:400;text-transform:none;font-size:clamp(36px,5.4vw,84px);letter-spacing:-.015em;line-height:1.1}
-.marquee span{margin:0 28px;transition:color .3s,-webkit-text-stroke-color .3s}
-.marquee span:nth-child(4n+1){color:transparent;-webkit-text-stroke:.8px var(--fg)}
-.marquee span:nth-child(4n+3){color:var(--fg)}
-.marquee span:nth-child(even){display:inline-block;animation:spinstar 6s linear infinite;font-size:.7em}
-.marquee span:nth-child(4n+1):hover{color:var(--fg)}
-@keyframes spinstar{to{rotate:360deg}}
+.marquee span{margin:0 clamp(26px,3.4vw,56px);transition:color .3s,-webkit-text-stroke-color .3s}
+.marquee span:nth-child(5n+1),.marquee span:nth-child(5n+3),.marquee span:nth-child(5n+5){color:transparent;-webkit-text-stroke:.8px var(--fg)}
+.marquee span:nth-child(5n+2),.marquee span:nth-child(5n+4){color:var(--fg)}
+.marquee span:hover{color:var(--fg)}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* ===== flyers ===== */
@@ -281,8 +279,8 @@ img.src-art{display:none!important}
 </section>
 
 <div class="marquee"><div>
-  <span>DJ del Año · Mixmag 2012</span><span>✦</span><span>Diynamic</span><span>✦</span><span>Solomun +1 · Pacha</span><span>✦</span><span>Mejor productor · DJ Awards 2012</span><span>✦</span><span>Remix del Año · RA 2011</span><span>✦</span>
-  <span>DJ del Año · Mixmag 2012</span><span>✦</span><span>Diynamic</span><span>✦</span><span>Solomun +1 · Pacha</span><span>✦</span><span>Mejor productor · DJ Awards 2012</span><span>✦</span><span>Remix del Año · RA 2011</span><span>✦</span>
+  <span>DJ del Año · Mixmag 2012</span><span>Diynamic</span><span>Solomun +1 · Pacha</span><span>Mejor productor · DJ Awards 2012</span><span>Remix del Año · RA 2011</span>
+  <span>DJ del Año · Mixmag 2012</span><span>Diynamic</span><span>Solomun +1 · Pacha</span><span>Mejor productor · DJ Awards 2012</span><span>Remix del Año · RA 2011</span>
 </div></div>
 
 <!-- ===== FLYERS ===== -->
