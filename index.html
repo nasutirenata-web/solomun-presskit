@@ -250,6 +250,16 @@ img.src-art{display:none!important}
 .card img{transform:perspective(900px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .25s ease-out}
 .card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.32),transparent 45%);mix-blend-mode:soft-light;opacity:0;transition:opacity .25s}
 .card:hover::after{opacity:1}
+
+/* personas de un color bailando en Booking (azul) y Créditos (naranja) */
+.book,.finale{position:relative;isolation:isolate}
+.book>*:not(.bk),.finale>*:not(.bk){position:relative;z-index:1}
+.bk{position:absolute;left:0;right:0;bottom:0;z-index:0!important;pointer-events:none;overflow:hidden}
+.bkg{position:absolute;bottom:0;height:100%;aspect-ratio:1080/745}
+.bkg0{left:0;opacity:.85}
+.bkg1{right:0;transform:scaleX(-1);opacity:.65}
+.bkd{position:absolute;inset:0}
+.bks{position:absolute;inset:0;background:var(--bk);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center bottom;mask-position:center bottom;will-change:transform}
 </style>
 <link rel="stylesheet" href="experience.css?v=22">
 </head>
@@ -580,5 +590,6 @@ img.src-art{display:none!important}
 <script src="deck.js?v=2"></script>
 <script src="live.js?v=1"></script>
 <script src="dance.js?v=2"></script>
+<script src="book-dance.js?v=2"></script>
 </body>
 </html>
