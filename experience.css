@@ -97,3 +97,14 @@ section[id] { scroll-margin-top: 65px; }
     radial-gradient(40% 45% at 25% 85%, rgba(207,212,0,.28), transparent 70%);
   background-size:140% 140%;animation:meshmove 14s ease-in-out infinite alternate}
 @keyframes meshmove{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+
+/* ===== Fechas por slides: cada flyer tiene su color de fondo ===== */
+.tour{background:var(--slide-bg,transparent);color:var(--slide-fg,inherit);transition:background-color .8s ease,color .8s ease;position:relative;z-index:1}
+.tour .big,.tour p,.tour h2,.tour h3{color:inherit}
+.tour #deck-date{color:inherit;opacity:.75}
+.tour .deck-side{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.tour .deck-side .btn,.tour .deck-ctrl .btn{color:inherit;border-color:currentColor}
+.tour .deck-list button,.tour .deck-list button.on,.tour .deck-list button:hover{color:inherit}
+.tour .deck-list button.on{font-weight:600}
+.tour .deck-list,.tour .deck-list button{border-color:color-mix(in srgb,currentColor 28%,transparent)}
+.bar,.bar a,.bar .logo{color:var(--bar-fg,#f4f1ea)!important;transition:color .5s}

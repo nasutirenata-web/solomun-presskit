@@ -4,6 +4,16 @@
   var btns=[].slice.call(deck.querySelectorAll('.deck-list button'));
   var names=btns.map(function(b){return [b.querySelector('b').textContent,b.querySelector('i').textContent];});
   var cur=0;
+  var slides=[{bg:'#cfd400',fg:'#0a0908'},{bg:'#a9e9c9',fg:'#0a0908'},{bg:'#f1a9a4',fg:'#0a0908'},{bg:'#9db5f0',fg:'#0a0908'},{bg:'#2f6a9e',fg:'#f4f1ea'}];   // color de cada flyer
+  var tour=document.getElementById('fechas'), rootEl=document.documentElement, tourVis=false;
+  function paint(){
+    var s=slides[cur]; if(!tour) return;
+    tour.style.setProperty('--slide-bg',s.bg); tour.style.setProperty('--slide-fg',s.fg);
+    if(tourVis) rootEl.style.setProperty('--bar-fg',s.fg);
+  }
+  if(tour && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ tourVis=e[0].isIntersecting; if(tourVis) rootEl.style.setProperty('--bar-fg',slides[cur].fg); else rootEl.style.removeProperty('--bar-fg'); },{rootMargin:'-70px 0px -50% 0px'}).observe(tour);
+  }
   function pos(c,k){ // k = lugar en el mazo (0 = arriba)
     var side=k%2?1:-1, r=k?side*(3+k*2.2):0, x=k?side*(k*7):0, y=k*10, s=1-k*.045;
     c.style.zIndex=n-k; c.style.opacity=k>3?0:1; c.style.pointerEvents=k?'none':'auto';
@@ -14,7 +24,7 @@
     document.getElementById('deck-n').textContent=('0'+(cur+1)).slice(-2);
     document.getElementById('deck-city').textContent=names[cur][0];
     document.getElementById('deck-date').textContent=names[cur][1];
-    btns.forEach(function(b,i){b.classList.toggle('on',i===cur);});
+    btns.forEach(function(b,i){b.classList.toggle('on',i===cur);}); paint();
   }
   function go(i){ cur=(i+n)%n; render(); }
   function fling(dir){
