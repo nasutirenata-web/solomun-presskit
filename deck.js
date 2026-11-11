@@ -4,6 +4,8 @@
   var btns=[].slice.call(deck.querySelectorAll('.deck-list button'));
   var names=btns.map(function(b){return [b.querySelector('b').textContent,b.querySelector('i').textContent];});
   var cur=0;
+  var glows=['#cfd400','#6fe3b3','#ff7d73','#7c98ff','#ff6a2c'];   // color dominante de cada flyer
+  var tour=document.getElementById('fechas');
   function pos(c,k){ // k = lugar en el mazo (0 = arriba)
     var side=k%2?1:-1, r=k?side*(3+k*2.2):0, x=k?side*(k*7):0, y=k*10, s=1-k*.045;
     c.style.zIndex=n-k; c.style.opacity=k>3?0:1; c.style.pointerEvents=k?'none':'auto';
@@ -15,6 +17,7 @@
     document.getElementById('deck-city').textContent=names[cur][0];
     document.getElementById('deck-date').textContent=names[cur][1];
     btns.forEach(function(b,i){b.classList.toggle('on',i===cur);});
+    deck.style.setProperty('--glow',glows[cur]||glows[0]);
   }
   function go(i){ cur=(i+n)%n; render(); }
   function fling(dir){
@@ -36,5 +39,16 @@
   document.getElementById('deck-zoom').onclick=function(){ li.src=cards[cur].querySelector('img').src; lb.hidden=false; };
   lb.onclick=function(){ lb.hidden=true; };
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.hidden=true; });
+  // inclinación 3D y brillo que siguen al mouse sobre la carta de arriba
+  stage.addEventListener('pointermove',function(e){
+    var c=cards[cur], r=c.getBoundingClientRect(); if(!r.width) return;
+    var px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+    c.style.setProperty('--ry',((px-.5)*14).toFixed(1)+'deg'); c.style.setProperty('--rx',((.5-py)*10).toFixed(1)+'deg');
+    c.style.setProperty('--mx',(px*100).toFixed(0)+'%'); c.style.setProperty('--my',(py*100).toFixed(0)+'%');
+  });
+  stage.addEventListener('pointerleave',function(){ var c=cards[cur]; c.style.setProperty('--ry','0deg'); c.style.setProperty('--rx','0deg'); });
+  // parallax suave del fondo
+  if(tour){ var tick=function(){ var r=tour.getBoundingClientRect(), p=(r.top+r.height/2-innerHeight/2)/innerHeight; tour.style.setProperty('--p',(p*-18).toFixed(1)); };
+    window.addEventListener('scroll',tick,{passive:true}); tick(); }
   render();
 })();
