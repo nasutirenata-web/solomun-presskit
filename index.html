@@ -83,7 +83,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:n
 .wash{position:absolute;inset:0;z-index:2;background:var(--yel);opacity:0;pointer-events:none;mix-blend-mode:multiply}
 img.src-art{display:none!important}
 .mega{position:absolute;z-index:3;left:0;right:0;top:calc(8vh + 24px);text-align:center;font-size:clamp(48px,14.4vw,280px);white-space:nowrap;pointer-events:none;color:var(--bone)}
-.sub{position:absolute;z-index:3;left:var(--pad);right:var(--pad);top:calc(8vh + 24px + min(78vw,980px)/3.19 + 14px);display:flex;align-items:center;gap:18px;pointer-events:none;font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:clamp(10px,1vw,14px);letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
+.sub{position:absolute;z-index:3;left:var(--pad);right:var(--pad);top:calc(8vh + 18px);display:flex;align-items:center;gap:18px;pointer-events:none;font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:clamp(10px,1vw,14px);letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
 .sub i{flex:1;height:1px;background:var(--bone);opacity:.85}
 .sub b{font-weight:600;opacity:.6}
 @media(max-width:560px){.sub{letter-spacing:.22em;gap:10px}.sub b{display:none}}
@@ -265,10 +265,10 @@ img.src-art{display:none!important}
 
 /* logo de Solomun (el manuscrito de su perfil), del color del texto */
 .bar .logo{display:inline-flex;align-items:center;height:38px;font-size:0}
-.bar .logo-img{display:block;height:32px;aspect-ratio:447/140;background:currentColor;-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
+.bar .logo-img{display:block;height:32px;aspect-ratio:1328/408;background:currentColor;-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
 
 .mega{font-size:0}
-.mega-logo{display:block;margin:0 auto;width:min(78vw,980px);aspect-ratio:447/140;background:var(--bone);-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
+.mega-logo{display:block;margin:0 auto;width:min(40vw,540px);aspect-ratio:1328/408;background:var(--bone);-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
 
 /* letra manuscrita de su destacada de Instagram: solo su nombre y el menú / etiquetas de sección */
 .nm,.big.nm,em.s.nm{font-family:'Caveat Brush','Permanent Marker',cursive!important;font-weight:400!important;font-style:normal!important;text-transform:none!important;font-stretch:100%!important;letter-spacing:0!important;font-size-adjust:.64}
@@ -291,8 +291,24 @@ img.src-art{display:none!important}
 .crowd{opacity:.42!important;filter:blur(2.6px) saturate(.9)}
 .crowd .solo{filter:none!important}
 .aura i{opacity:.4!important;filter:blur(90px)!important}
+
+/* portada: la línea DJ · Producer va arriba del logo, y el logo más chico con aire */
+.mega{top:calc(8vh + 70px)}
+@media(max-width:560px){.mega{top:calc(8vh + 64px)}.mega-logo{width:min(70vw,360px)}}
+/* bio con márgenes */
+.js .story .bio-copy{right:clamp(40px,8vw,140px)!important;width:min(36vw,470px)!important}
+.js .story .bio-copy h2{font-size:clamp(46px,5vw,84px)!important}
+
+/* letras de fondo en Fechas: "Solomun" corriendo en filas, más chico y fino, siempre en movimiento */
+.wm{justify-content:space-evenly;padding:0}
+.wmr{font-size:clamp(34px,5.4vw,88px)!important;line-height:1!important;animation:wmL 70s linear infinite}
+.wmr.wb{animation-name:wmR;animation-duration:85s}
+.wmr span{margin-right:.5em!important;-webkit-text-stroke:1.2px var(--slide-fg,#f4f1ea)!important;opacity:.2!important}
+.wmr.wb span{-webkit-text-stroke:0!important;color:var(--slide-fg,#f4f1ea)!important;opacity:.07!important}
+@keyframes wmL{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes wmR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
 </style>
-<link rel="stylesheet" href="experience.css?v=47">
+<link rel="stylesheet" href="experience.css?v=50">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -346,7 +362,7 @@ img.src-art{display:none!important}
 
 <!-- ===== FLYERS ===== -->
 <section class="tour" id="fechas">
-  <div class="wm" aria-hidden="true"><div class="wmr r1"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr r2"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr r3"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div></div>
+  <div class="wm" aria-hidden="true"><div class="wmr wa"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr wb"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr wa"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr wb"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr wa"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div><div class="wmr wb"><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span><span>Solomun</span></div></div>
   <div class="tour-head">
     <p class="mono idx" data-n="02">Fechas</p>
     <h2 class="big">Around<br><em class="s">the world</em></h2>
