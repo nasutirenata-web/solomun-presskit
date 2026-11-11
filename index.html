@@ -8,7 +8,7 @@
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Caveat+Brush&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0a0908; --bone:#f4f1ea; --yel:#f1c2ba;
@@ -25,8 +25,8 @@ a{color:inherit}
 main{position:relative;z-index:1}
 .grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 .mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.big{font-family:var(--sans);font-stretch:94%;font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:-.045em}   /* grotesca negra y apretada, como el SOLOMUN de sus flyers */
-em.s{font-family:'Bodoni Moda','Instrument Serif',serif;font-style:normal;font-weight:400;text-transform:uppercase;font-stretch:100%;letter-spacing:.005em;font-size:.86em}   /* serif fina de contraste, como el nombre de la ciudad en sus flyers */
+.big{font-family:'Caveat Brush','Permanent Marker',cursive;font-weight:400;font-stretch:100%;text-transform:none;line-height:.9;letter-spacing:-.005em;font-size-adjust:.64}   /* la letra manuscrita de su destacada de Instagram */
+em.s{font-family:inherit;font-style:normal;font-weight:400;text-transform:none;font-stretch:100%;letter-spacing:0;font-size:1em;opacity:.92}
 .idx{display:inline-flex;align-items:center;gap:10px}
 .idx::before{display:none}
 .mono.idx{font-family:var(--sans);font-stretch:125%;font-weight:600;letter-spacing:.24em;font-size:11px}
@@ -83,7 +83,7 @@ em.s{font-family:'Bodoni Moda','Instrument Serif',serif;font-style:normal;font-w
 .wash{position:absolute;inset:0;z-index:2;background:var(--yel);opacity:0;pointer-events:none;mix-blend-mode:multiply}
 img.src-art{display:none!important}
 .mega{position:absolute;z-index:3;left:0;right:0;top:calc(8vh + 24px);text-align:center;font-size:clamp(48px,14.4vw,280px);white-space:nowrap;pointer-events:none;color:var(--bone)}
-.sub{position:absolute;z-index:3;left:var(--pad);right:var(--pad);top:calc(8vh + 24px + clamp(48px,14.4vw,280px)*.92);display:flex;align-items:center;gap:18px;pointer-events:none;font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:clamp(10px,1vw,14px);letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
+.sub{position:absolute;z-index:3;left:var(--pad);right:var(--pad);top:calc(8vh + 24px + min(78vw,980px)/3.19 + 14px);display:flex;align-items:center;gap:18px;pointer-events:none;font-family:var(--sans);font-stretch:125%;font-weight:600;font-size:clamp(10px,1vw,14px);letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
 .sub i{flex:1;height:1px;background:var(--bone);opacity:.85}
 .sub b{font-weight:600;opacity:.6}
 @media(max-width:560px){.sub{letter-spacing:.22em;gap:10px}.sub b{display:none}}
@@ -266,8 +266,11 @@ img.src-art{display:none!important}
 /* logo de Solomun (el manuscrito de su perfil), del color del texto */
 .bar .logo{display:inline-flex;align-items:center;height:38px;font-size:0}
 .bar .logo-img{display:block;height:32px;aspect-ratio:447/140;background:currentColor;-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
+
+.mega{font-size:0}
+.mega-logo{display:block;margin:0 auto;width:min(78vw,980px);aspect-ratio:447/140;background:var(--bone);-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
 </style>
-<link rel="stylesheet" href="experience.css?v=42">
+<link rel="stylesheet" href="experience.css?v=44">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -293,7 +296,7 @@ img.src-art{display:none!important}
     <div class="wash"></div>
     <img class="src-art" src="img/flyer-punta-del-este.png" alt="" hidden>
 
-    <h1 class="mega big">Solomun</h1>
+    <h1 class="mega" aria-label="Solomun"><span class="mega-logo"></span></h1>
     <p class="sub"><span>DJ · Producer</span><i></i><b>Diynamic</b><i></i><span>Hamburgo</span></p>
 
     <div class="hero-meta">
