@@ -28,7 +28,7 @@ main{position:relative;z-index:1}
 .big{font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:-.03em}
 em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .idx{display:inline-flex;align-items:center;gap:10px}
-.idx::before{content:attr(data-n);border:1px solid currentColor;border-radius:99px;padding:2px 9px 1px;font-size:11px;letter-spacing:.06em}
+.idx::before{content:attr(data-n);border:1px solid currentColor;border-radius:99px;padding:1px 6px;font:italic 9px var(--serif)}
 .mono.idx{font-family:var(--sans);font-stretch:125%;font-weight:600;letter-spacing:.24em;font-size:11px}
 
 /* ===== siluetas del flyer (fondo fijo que se mueve y cambia de color) ===== */
@@ -175,6 +175,7 @@ img.src-art{display:none!important}
 
 @media(prefers-reduced-motion:reduce){.marquee div{animation:none}}
 </style>
+<link rel="stylesheet" href="experience.css">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -183,7 +184,7 @@ img.src-art{display:none!important}
 <header class="bar">
   <a href="#top" class="logo">Solomun</a>
   <nav>
-    <a href="#bio"><sup>01</sup>Bio</a><a href="#fechas"><sup>02</sup>Fechas</a><a href="#musica"><sup>03</sup>Música</a><a href="#booking" class="cta">Booking</a>
+    <a href="#bio">Bio</a><a href="#fechas">Fechas</a><a href="#musica">Música</a><a href="#booking" class="cta">Booking</a>
   </nav>
 </header>
 
@@ -208,12 +209,13 @@ img.src-art{display:none!important}
       <div class="btns">
         <a class="btn solid" href="#booking">Booking</a>
         <a class="btn" href="https://linkin.bio/solomun" target="_blank" rel="noopener">Escuchar</a>
+        <button class="btn motion-toggle" type="button" hidden>Pausar imagen</button>
       </div>
     </div>
 
     <div class="bio-copy" id="bio">
       <p class="mono idx" data-n="01">Bio</p>
-      <h2 class="big">Mladen<br><em class="s">Solomun</em></h2>
+      <h2 class="big">Solomun</h2>
       <p>Nació el 27 de diciembre de 1975 en Travnik, Bosnia, y creció en Hamburgo. A los 16 ya pasaba discos en un centro juvenil; trabajó unos cinco años en cine antes de dedicarse a la música.</p>
       <p>A fines de 2005 fundó Diynamic con Adriano Trolio: “Do It Yourself”. Hoy es uno de los nombres más grandes de la música electrónica.</p>
       <div class="facts">
@@ -232,11 +234,13 @@ img.src-art{display:none!important}
 </div></div>
 
 <!-- ===== FLYERS ===== -->
-<section class="tour" id="fechas">
+<section class="tour tour-archive" id="fechas">
   <div class="tour-head">
     <p class="mono idx" data-n="02">Fechas</p>
     <h2 class="big">Around<br><em class="s">the world</em></h2>
-    <p>Los flyers de sus shows, todos juntos. Sudamérica, fin de año en Mendoza y Punta del Este, Mar del Plata y Diynamic Miami.</p>
+    <p class="tour-description">Elegí un show para ver el flyer completo.</p>
+    <div class="tour-select" hidden aria-label="Flyers de la gira"></div>
+    <a class="tour-calendar" href="#calendario">Ver calendario ↓</a>
   </div>
   <div class="rail-wrap">
     <div class="rail" id="rail">
@@ -249,7 +253,7 @@ img.src-art{display:none!important}
   </div>
 </section>
 
-<section class="dates">
+<section class="dates" id="calendario">
   <h3 class="big">Calendario</h3>
   <ul id="dates">
     <li data-date="2026-10-23"><span class="d mono">23/10/26</span><span class="city">Córdoba</span><span class="venue">La Estación XL</span><span class="tag mono"></span></li>
@@ -266,15 +270,17 @@ img.src-art{display:none!important}
 </section>
 
 <!-- ===== MÚSICA ===== -->
-<section class="rel" id="musica">
+<section class="rel listening-room" id="musica">
   <p class="mono idx" data-n="03">Música</p>
   <h2 class="big">Discos</h2>
+  <div class="record-display" aria-hidden="true"><span>Diynamic</span></div>
   <ol>
     <li><span class="t">Dance Baby</span><span class="m mono">Álbum · Diynamic · 2009</span></li>
     <li><span class="t">Customer Is King</span><span class="m mono">EP · Diynamic · 2018</span></li>
     <li><span class="t">Home</span><span class="m mono">Diynamic · 2020</span></li>
     <li><span class="t">Nobody Is Not Loved</span><span class="m mono">NINL · 2021</span></li>
   </ol>
+  <a class="listen-link" hidden target="_blank" rel="noopener">Buscar en Spotify ↗</a>
 </section>
 
 <!-- ===== ESCENA ===== -->
@@ -287,7 +293,7 @@ img.src-art{display:none!important}
 </section>
 
 <!-- ===== BOOKING ===== -->
-<section class="book" id="booking">
+<section class="book booking-desk" id="booking">
   <p class="mono idx" data-n="05">Booking</p>
   <h2 class="big">Book<br><em class="s">Solomun</em></h2>
   <div class="grid">
@@ -300,6 +306,7 @@ img.src-art{display:none!important}
     <a class="btn solid" href="mailto:JSchumann@WMEAgency.com">Escribir a booking</a>
     <a class="btn" href="https://linkin.bio/solomun" target="_blank" rel="noopener">Todos sus links</a>
   </div>
+  <p class="copy-status" role="status"></p>
 </section>
 
 <!-- ===== FOTÓGRAFOS + CIERRE ===== -->
@@ -356,7 +363,7 @@ img.src-art{display:none!important}
       x.drawImage(f0,0,0);
       (function tick(t){
         requestAnimationFrame(tick);
-        if (!vis || document.hidden || t-last < 83) return;      // ~12 cuadros por segundo, pausa si no se ve
+        if (!vis || document.hidden || fig.dataset.paused === 'true' || t-last < 166) return;
         last = t;
         var cl = CLIPS[ci];
         x.globalAlpha = 1; x.drawImage(cl.frames[idx],0,0);
@@ -445,19 +452,6 @@ img.src-art{display:none!important}
   mm.add('(min-width: 821px)', function(){ story(true); });
   mm.add('(max-width: 820px)', function(){ story(false); });
 
-  // ===== flyers: carril horizontal pineado =====
-  mm.add('(min-width: 900px)', function(){
-    var rail = document.getElementById('rail');
-    var tour = document.querySelector('.tour');
-    tour.classList.add('js-rail');
-    var dist = function(){ return rail.scrollWidth - window.innerWidth; };
-    gsap.to(rail,{
-      x:function(){ return -dist(); }, ease:'none',
-      scrollTrigger:{trigger:'.tour', start:'top top', end:function(){ return '+='+dist(); }, pin:true, scrub:.6, invalidateOnRefresh:true}
-    });
-    return function(){ tour.classList.remove('js-rail'); };
-  });
-
   // ===== qué sección pide qué tema (se alternan al bajar) =====
   [['.tour','dark'],['.dates','yellow'],['.rel','dark'],['.live','dark'],['.book','yellow'],['.finale','dark']].forEach(function(p){
     ScrollTrigger.create({trigger:p[0], start:'top 60%', end:'bottom 60%', onToggle:function(self){ if (self.isActive) setTheme(p[1]); }});
@@ -467,5 +461,6 @@ img.src-art{display:none!important}
   gsap.to('.live img',{yPercent:12, ease:'none', scrollTrigger:{trigger:'.live', start:'top bottom', end:'bottom top', scrub:true}});
 })();
 </script>
+<script src="experience.js"></script>
 </body>
 </html>
