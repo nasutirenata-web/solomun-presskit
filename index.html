@@ -455,15 +455,17 @@ img.src-art{display:none!important}
 
   // ===== siluetas del flyer: se generan UNA vez (blanco y negro) y se mueven con CSS =====
   function sil(img, tint, cls, crop){
-    var sh = Math.round(img.naturalHeight*(crop.y1-crop.y0)), sy = Math.round(img.naturalHeight*crop.y0), sw = img.naturalWidth;
+    var sh = Math.round(img.naturalHeight*(crop.y1-crop.y0)), sy = Math.round(img.naturalHeight*crop.y0), sx0 = Math.round(img.naturalWidth*.05), sw = Math.round(img.naturalWidth*.9);   // sin el borde del flyer
     var w = Math.min(sw, 900), h = Math.round(w*sh/sw);
     var c = document.createElement('canvas'); c.width = w; c.height = h; c.className = cls;
-    var x = c.getContext('2d'); x.drawImage(img,0,sy,sw,sh,0,0,w,h);
+    var x = c.getContext('2d'); x.drawImage(img,sx0,sy,sw,sh,0,0,w,h);
     var d = x.getImageData(0,0,w,h), p = d.data;
+    var fw = w*.1;
     for (var i=0;i<p.length;i+=4){
+      var px = (i/4)%w, ef = Math.min(1, px/fw, (w-1-px)/fw);
       var l = (0.299*p[i]+0.587*p[i+1]+0.114*p[i+2])/255;
       l = Math.max(0, Math.min(1, (l-crop.lo)/(crop.hi-crop.lo)));
-      p[i]=tint[0]; p[i+1]=tint[1]; p[i+2]=tint[2]; p[i+3]=Math.round(255*(1-l));   // lo oscuro del flyer = silueta
+      p[i]=tint[0]; p[i+1]=tint[1]; p[i+2]=tint[2]; p[i+3]=Math.round(255*(1-l)*Math.max(0,ef));   // lo oscuro del flyer = silueta
     }
     x.putImageData(d,0,0);
     return c;
