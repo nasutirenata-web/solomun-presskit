@@ -340,8 +340,15 @@ img.src-art{display:none!important}
 .finale .wordmark{font-size:0!important;margin:auto 0 0!important;padding:clamp(40px,6vw,90px) 0 clamp(28px,4vw,56px)!important;text-align:center}
 .wm-logo{display:block;margin:0 auto;width:min(40vw,520px);aspect-ratio:1328/408;background:var(--bone);-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat;opacity:.92}
 @media(max-width:560px){.wm-logo{width:min(64vw,320px)}}
+
+/* portada: una sola línea chica y fina debajo del logo, sin rayas */
+.sub{left:0!important;right:0!important;top:calc(8vh + 70px + min(40vw,540px)/3.255 + 22px)!important;justify-content:center;gap:16px!important;font-stretch:100%!important;font-weight:300!important;font-size:clamp(10px,.85vw,12px)!important;letter-spacing:.36em!important}
+.sub i{display:none!important}
+.sub b{opacity:.75!important;font-weight:300!important}
+.sub span+b::before{content:"—";margin-right:16px;opacity:.6}
+@media(max-width:560px){.sub{top:calc(8vh + 64px + min(70vw,360px)/3.255 + 18px)!important;letter-spacing:.24em!important;gap:10px!important}.sub span+b::before{margin-right:10px}}
 </style>
-<link rel="stylesheet" href="experience.css?v=55">
+<link rel="stylesheet" href="experience.css?v=57">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -368,7 +375,7 @@ img.src-art{display:none!important}
     <img class="src-art" src="img/flyer-punta-del-este.png" alt="" hidden>
 
     <h1 class="mega" aria-label="Solomun"><span class="mega-logo"></span></h1>
-    <p class="sub"><span>DJ · Producer</span><i></i><b>Diynamic</b><i></i><span>Hamburgo</span></p>
+    <p class="sub"><span>DJ · Producer</span></p>
 
     <div class="hero-meta">
       <p class="mono">Diynamic · Hamburgo<br>Presskit 2026 — 27</p>
