@@ -47,4 +47,6 @@
   lb.onclick=function(){ lb.hidden=true; };
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.hidden=true; });
   render();
+  // la marca de fondo se desliza con el scroll
+  if(tour){ var wmTick=function(){ var r=tour.getBoundingClientRect(); tour.style.setProperty('--sp',(r.top*.35).toFixed(0)); }; window.addEventListener('scroll',wmTick,{passive:true}); wmTick(); }
 })();
