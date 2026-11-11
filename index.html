@@ -274,8 +274,25 @@ img.src-art{display:none!important}
 .nm,.big.nm,em.s.nm{font-family:'Caveat Brush','Permanent Marker',cursive!important;font-weight:400!important;font-style:normal!important;text-transform:none!important;font-stretch:100%!important;letter-spacing:0!important;font-size-adjust:.64}
 .wmr span{font-family:'Caveat Brush','Permanent Marker',cursive;font-weight:400;text-transform:none;letter-spacing:0;font-stretch:100%}
 
+
+/* ===== pasada delicada ===== */
+/* Bio: sin cuadrado. Texto editorial directo sobre la foto, con una línea fina a la izquierda */
+.js .story .bio-copy{background:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:0!important;border-left:1px solid rgba(244,241,234,.55)!important;border-radius:0!important;box-shadow:none!important;
+  color:var(--bone)!important;padding:clamp(4px,.6vw,10px) 0 clamp(4px,.6vw,10px) clamp(22px,2.4vw,40px)!important;width:min(40vw,520px)!important;text-shadow:0 1px 18px rgba(0,0,0,.45)}
+.js .story .bio-copy h2{font-size:clamp(64px,8vw,132px);margin:6px 0 18px}
+.js .story .bio-copy p{font-size:clamp(16px,1.25vw,19px);line-height:1.62;font-weight:300}
+.js .story .bio-copy .facts{border-top:1px solid rgba(244,241,234,.4)!important;grid-template-columns:1fr 1fr;gap:16px 24px;margin-top:24px;padding-top:18px}
+.js .story .bio-copy .facts b{font-weight:600;font-stretch:100%;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.01em}
+.js .story .bio-copy .facts span{opacity:.7;letter-spacing:.16em}
+.js .story .bio-copy .idx{opacity:.8}
+/* velo suave a la derecha para que se lea el texto sin caja */
+.stage .figure::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(270deg,rgba(10,9,8,.66) 0,rgba(10,9,8,.28) 46%,rgba(10,9,8,0) 72%)}
+/* Gente de fondo: más suave y quieta, sin líneas duras */
+.crowd{opacity:.42!important;filter:blur(2.6px) saturate(.9)}
+.crowd .solo{filter:none!important}
+.aura i{opacity:.4!important;filter:blur(90px)!important}
 </style>
-<link rel="stylesheet" href="experience.css?v=46">
+<link rel="stylesheet" href="experience.css?v=47">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -607,6 +624,6 @@ img.src-art{display:none!important}
 <script src="experience.js?v=5"></script>
 <script src="deck.js?v=5"></script>
 <script src="live.js?v=2"></script>
-<script src="dance.js?v=8"></script>
+<script src="dance.js?v=9"></script>
 </body>
 </html>
