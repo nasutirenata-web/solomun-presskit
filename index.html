@@ -35,12 +35,12 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:n
 .crowd{position:fixed;left:0;right:0;bottom:0;height:66vh;z-index:0;pointer-events:none;opacity:.5;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 42%);mask-image:linear-gradient(180deg,transparent 0,#000 42%)}
 .crowd .grp{position:absolute;top:0;bottom:0;left:-5%;right:-5%;will-change:transform}
-.crowd .g1{animation:sway1 13s ease-in-out infinite alternate}
-.crowd .g2{opacity:.55;animation:sway2 17s ease-in-out infinite alternate}
+.crowd .g1{animation:sway1 4.5s ease-in-out infinite alternate}
+.crowd .g2{opacity:.55;animation:sway2 6s ease-in-out infinite alternate}
 .crowd canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.crowd .cv-k{opacity:0}
-@keyframes sway1{from{transform:translateX(-2.5%) scale(1.02)}to{transform:translateX(2.5%) scale(1.09)}}
-@keyframes sway2{from{transform:scaleX(-1) translateX(3%) scale(1.07)}to{transform:scaleX(-1) translateX(-3%) scale(1.0)}}
+.crowd .tint{position:absolute;inset:0;background:#f4f1ea;-webkit-mask-size:cover;mask-size:cover;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+@keyframes sway1{from{transform:translate(-4%,1.5%) scale(1.02) rotate(-.8deg)}to{transform:translate(4%,-2%) scale(1.12) rotate(.8deg)}}
+@keyframes sway2{from{transform:scaleX(-1) translate(5%,-1.5%) scale(1.1)}to{transform:scaleX(-1) translate(-5%,2%) scale(1.0)}}
 
 /* barra */
 .bar{position:fixed;z-index:80;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px var(--pad);color:var(--fg)}
@@ -138,7 +138,7 @@ img.src-art{display:none!important}
 .dates .src{margin-top:18px;opacity:.6}
 
 /* ===== lanzamientos ===== */
-.rel{padding:clamp(64px,9vw,130px) var(--pad) clamp(40px,5vw,70px)}
+.rel{overflow-x:clip;padding:clamp(64px,9vw,130px) var(--pad) clamp(40px,5vw,70px)}
 .rel h2{font-size:clamp(40px,8vw,140px);margin-bottom:34px}
 .rel ol{list-style:none;border-top:2px solid currentColor}
 .rel li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:22px 0;border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent);transition:padding .35s,color .35s;cursor:default}
@@ -174,6 +174,25 @@ img.src-art{display:none!important}
 @media(max-width:640px){.finale dl{grid-template-columns:1fr;gap:4px}.finale dd{margin-bottom:14px}}
 
 @media(prefers-reduced-motion:reduce){.marquee div{animation:none}}
+
+/* ===== discos: funda + vinilo que sale y gira ===== */
+.crate{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3.4vw,56px);padding:10px 0 20px}
+.rec{position:relative;display:block;color:inherit;text-decoration:none}
+.rec .sleeve{position:relative;z-index:2;display:block;aspect-ratio:1;box-shadow:0 18px 40px rgba(0,0,0,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.rec .sleeve img{width:100%;height:100%;object-fit:cover;display:block}
+.rec .vinyl{position:absolute;z-index:1;top:3%;left:3%;width:94%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,var(--ink) 0 3%,transparent 3.2%),radial-gradient(circle,transparent 0 31%,#c9c4b6 31.2% 32%,transparent 32.2%),var(--cov) center/32% no-repeat,
+   repeating-radial-gradient(circle,#0b0b0b 0 2px,#1b1b1b 2px 3px);
+  box-shadow:0 8px 24px rgba(0,0,0,.6);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.rec .vinyl::after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,transparent 0 20%,rgba(255,255,255,.14) 25%,transparent 32% 70%,rgba(255,255,255,.1) 76%,transparent 82%)}
+.rec:hover .vinyl,.rec:focus-visible .vinyl,.rec.on .vinyl{transform:translateX(42%);animation:spin 2.4s linear infinite}
+.rec:hover .sleeve,.rec:focus-visible .sleeve,.rec.on .sleeve{transform:translateX(-8%) rotate(-2deg)}
+@keyframes spin{to{transform:translateX(42%) rotate(360deg)}}
+.rec .cap{display:flex;flex-direction:column;gap:4px;margin-top:20px}
+.rec .cap b{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.4vw,36px);line-height:1}
+.rec .cap i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.crate-hint{margin-top:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+@media(max-width:760px){.crate{grid-template-columns:1fr 1fr;row-gap:34px}.rec .vinyl{animation:spin 6s linear infinite;transform:translateX(30%)}@keyframes spin{to{transform:translateX(30%) rotate(360deg)}}}
 </style>
 <link rel="stylesheet" href="experience.css">
 </head>
@@ -268,17 +287,28 @@ img.src-art{display:none!important}
 </section>
 
 <!-- ===== MÚSICA ===== -->
-<section class="rel listening-room" id="musica">
+<section class="rel" id="musica">
   <p class="mono idx" data-n="03">Música</p>
   <h2 class="big">Discos</h2>
-  <div class="record-display" aria-hidden="true"><span>Diynamic</span></div>
-  <ol>
-    <li><span class="t">Dance Baby</span><span class="m mono">Álbum · Diynamic · 2009</span></li>
-    <li><span class="t">Customer Is King</span><span class="m mono">EP · Diynamic · 2018</span></li>
-    <li><span class="t">Home</span><span class="m mono">Diynamic · 2020</span></li>
-    <li><span class="t">Nobody Is Not Loved</span><span class="m mono">NINL · 2021</span></li>
-  </ol>
-  <a class="listen-link" hidden target="_blank" rel="noopener">Buscar en Spotify ↗</a>
+  <div class="crate">
+    <a class="rec" href="https://open.spotify.com/search/Solomun%20Dance%20Baby" target="_blank" rel="noopener" aria-label="Dance Baby, buscar en Spotify">
+      <span class="vinyl" style="--cov:url(img/discos/dance-baby.jpg)"></span>
+      <span class="sleeve"><img src="img/discos/dance-baby.jpg" alt="Tapa de Dance Baby" loading="lazy"></span>
+      <span class="cap"><b>Dance Baby</b><i class="mono">Álbum · Diynamic · 2009</i></span></a>
+    <a class="rec" href="https://open.spotify.com/search/Solomun%20Customer%20Is%20King" target="_blank" rel="noopener" aria-label="Customer Is King, buscar en Spotify">
+      <span class="vinyl" style="--cov:url(img/discos/customer-is-king.jpg)"></span>
+      <span class="sleeve"><img src="img/discos/customer-is-king.jpg" alt="Tapa de Customer Is King" loading="lazy"></span>
+      <span class="cap"><b>Customer Is King</b><i class="mono">EP · Diynamic · 2018</i></span></a>
+    <a class="rec" href="https://open.spotify.com/search/Solomun%20Home" target="_blank" rel="noopener" aria-label="Home, buscar en Spotify">
+      <span class="vinyl" style="--cov:url(img/discos/home.jpg)"></span>
+      <span class="sleeve"><img src="img/discos/home.jpg" alt="Tapa de Home" loading="lazy"></span>
+      <span class="cap"><b>Home</b><i class="mono">Single · Diynamic · 2020</i></span></a>
+    <a class="rec" href="https://open.spotify.com/search/Solomun%20Nobody%20Is%20Not%20Loved" target="_blank" rel="noopener" aria-label="Nobody Is Not Loved, buscar en Spotify">
+      <span class="vinyl" style="--cov:url(img/discos/ninl.jpg)"></span>
+      <span class="sleeve"><img src="img/discos/ninl.jpg" alt="Tapa de Nobody Is Not Loved" loading="lazy"></span>
+      <span class="cap"><b>Nobody Is Not Loved</b><i class="mono">Álbum · NINL · 2021</i></span></a>
+  </div>
+  <p class="mono crate-hint">Pasá el mouse o tocá un disco · abre en Spotify ↗</p>
 </section>
 
 <!-- ===== ESCENA ===== -->
@@ -399,7 +429,9 @@ img.src-art{display:none!important}
       var crop = {y0:.44, y1:.86, lo:.44, hi:.79};            // solo las siluetas de su flyer: sin título ni logos
       var w = sil(sa,[244,241,234],'cv-w',crop), k = sil(sa,[10,9,8],'cv-k',crop);
       var g1 = document.querySelector('.crowd .g1'), g2 = document.querySelector('.crowd .g2');
-      g1.appendChild(w); g1.appendChild(k); g2.appendChild(clone(w)); g2.appendChild(clone(k));
+      var url = w.toDataURL('image/png');
+      [g1,g2].forEach(function(g){ var t = document.createElement('div'); t.className='tint'; t.style.webkitMaskImage = t.style.maskImage = 'url('+url+')'; g.appendChild(t); });
+      startColors();
     }catch(e){ /* sin siluetas, la página sigue andando */ }
   }
   if (sa) { if (sa.complete && sa.naturalWidth) buildCrowd(); else sa.addEventListener('load', buildCrowd); }
@@ -422,11 +454,21 @@ img.src-art{display:none!important}
     yellow: {bg:'rgb(255,224,0)', fg:'rgb(10,9,8)',      ac:'rgb(10,9,8)'}
   };
   var cur = 'dark';
+  var PAL = {dark:['#e9e476','#aee7c5','#e9b8b0','#becbf1','#99ddfe','#f4f1ea'], yellow:['#0a0908','#0f3d3e','#5a1a6e','#8a1f2b','#12307a']};
+  var palI = 0, palTick = null;
+  function startColors(){
+    if (palTick) return; if (!window.gsap || typeof PAL === 'undefined' || !PAL) { setTimeout(startColors,300); return; }
+    function step(){
+      var p = PAL[cur]; palI++;
+      gsap.to('.crowd .g1 .tint',{backgroundColor:p[palI%p.length],duration:2.2,ease:'sine.inOut',overwrite:'auto'});
+      gsap.to('.crowd .g2 .tint',{backgroundColor:p[(palI+2)%p.length],duration:2.2,ease:'sine.inOut',overwrite:'auto'});
+    }
+    gsap.set('.crowd .tint',{backgroundColor:'#f4f1ea'});
+    step(); palTick = setInterval(step,2400);
+  }
   function setTheme(t){
     if (t === cur) return; cur = t; var th = THEMES[t];
     gsap.to(document.documentElement,{'--bg':th.bg,'--fg':th.fg,'--ac':th.ac,duration:.6,ease:'power2.out',overwrite:'auto'});
-    gsap.to('.crowd .cv-w',{opacity:t==='dark'?1:0,duration:.6,overwrite:'auto'});
-    gsap.to('.crowd .cv-k',{opacity:t==='dark'?0:1,duration:.6,overwrite:'auto'});
   }
 
   var mm = gsap.matchMedia();
