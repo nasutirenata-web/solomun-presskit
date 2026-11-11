@@ -3,6 +3,7 @@ button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 section[id] { scroll-margin-top: 65px; }
 .motion-toggle { background: transparent; cursor: pointer; }
+.bar { color: var(--bone); background: #101011e8; }
 
 .tour-archive {
   --show-color: #e9e476;
@@ -14,8 +15,8 @@ section[id] { scroll-margin-top: 65px; }
   background: #111011;
   color: var(--bone);
 }
-.tour-archive .tour-head { padding: 0; }
-.tour-archive .tour-head h2 { font-size: clamp(53px, 8.4vw, 142px); }
+.tour-archive .tour-head { padding: 0; container-type: inline-size; }
+.tour-archive .tour-head h2 { font-size: clamp(42px, 18cqi, 128px); }
 .tour-archive .tour-head h2 em { color: var(--show-color); }
 .tour-select { display: grid; margin: 26px 0 20px; border-top: 1px solid #ffffff35; }
 .tour-select button {
@@ -97,6 +98,9 @@ section[id] { scroll-margin-top: 65px; }
 
 @media (max-width: 760px) {
   .tour-archive { grid-template-columns: minmax(0, 1fr); }
+  .tour-select { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 18px 0 12px; }
+  .tour-select button { padding: 9px 6px; font-size: 14px; }
+  .tour-select button[aria-pressed="true"]::after { content: none; }
   .tour-archive.is-interactive .flyer img { height: auto; max-height: 64vh; }
   .listening-room { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
   .record-display { width: min(50vw, 240px); justify-self: center; }
