@@ -30,8 +30,8 @@
   }
 
   // colores de sus flyers: azul de Mar del Plata, coral de Punta del Este, naranja de Miami, menta de Mendoza, verde lima de la gira
-  build('.book',['#3f5bd8']);      // azul (flyer de Mar del Plata), un solo color
-  build('.finale',['#ff6a2c']);       // naranja (flyer de Miami), un solo color
+  build('.book',['#6f8df0','#ff7d73','#ff6a2c','#3f5bd8']);
+  build('.finale',['#cfd400','#6fe3b3','#ff7d73','#7c98ff']);
 
   var T=1.7, SPEED=1.5;
   (function frame(ms){
