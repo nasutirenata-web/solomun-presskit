@@ -28,7 +28,7 @@
       {w:2.0, A:11, J:2.5, tw:3}      // ola lenta de brazos
     ];
     var k=0;
-    [].forEach.call(crowd.querySelectorAll('.grp'),function(g,gi){
+    [].forEach.call(crowd.querySelectorAll('.grp'),function(g,gi){ if(gi===1) return;   // un solo grupo: menos personas
       [].forEach.call(g.querySelectorAll('.dancer'),function(d,di){
         var url='img/baila-'+(di+1)+'.png', st=styles[(di+gi*2)%4]; d.style.opacity=[1,.78,.92,.68][(di+gi)%4];   // tonos distintos del mismo color para que se lean las personas
         dancers.push({sl:slices(d,url), st:st, ph:Math.random()*6.28, k:k++, mirror:gi});

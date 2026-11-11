@@ -37,8 +37,8 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:n
 /* cada bailarín es una capa propia: se mueve solo */
 .crowd{--cc:#ff6a2c}
 .crowd .grp{position:absolute;bottom:0;height:100%;aspect-ratio:1080/745}
-.crowd .g1{left:0}
-.crowd .g2{right:0;transform:scaleX(-1)}
+.crowd .g1{left:50%;transform:translateX(-50%)}
+.crowd .g2{display:none}
 .crowd .dancer{position:absolute;inset:0;background-position:center bottom;background-size:100% 100%;background-repeat:no-repeat;will-change:transform}
 .crowd .d1{background-image:url(img/baila-1.png);transform-origin:18% 100%;animation:dance1 1.7s ease-in-out infinite alternate}
 .crowd .d2{background-image:url(img/baila-2.png);transform-origin:42% 100%;animation:dance2 .75s ease-in-out infinite alternate}
@@ -267,7 +267,7 @@ img.src-art{display:none!important}
 .bar .logo{display:inline-flex;align-items:center;height:38px;font-size:0}
 .bar .logo-img{display:block;height:32px;aspect-ratio:447/140;background:currentColor;-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
 </style>
-<link rel="stylesheet" href="experience.css?v=38">
+<link rel="stylesheet" href="experience.css?v=41">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -599,6 +599,6 @@ img.src-art{display:none!important}
 <script src="experience.js?v=5"></script>
 <script src="deck.js?v=5"></script>
 <script src="live.js?v=2"></script>
-<script src="dance.js?v=7"></script>
+<script src="dance.js?v=8"></script>
 </body>
 </html>
