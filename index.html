@@ -237,7 +237,7 @@ img.src-art{display:none!important}
 .lightbox .btn{position:absolute;top:18px;right:18px;color:#f4f1ea;border-color:#f4f1ea;background:transparent}
 @media(max-width:820px){.deck{grid-template-columns:1fr}.deck-stage{height:min(62vh,520px)}}
 </style>
-<link rel="stylesheet" href="experience.css?v=18">
+<link rel="stylesheet" href="experience.css?v=19">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -555,7 +555,8 @@ img.src-art{display:none!important}
     ScrollTrigger.create({trigger:p[0], start:'top 60%', end:'bottom 60%', onToggle:function(self){ if (self.isActive) setTheme(p[1]); }});
   });
   // en Discos el fondo baila en blanco y negro; en el resto, a color
-  ScrollTrigger.create({trigger:'.rel', start:'top 70%', end:'bottom 30%', onToggle:function(self){ var c=document.querySelector('.crowd'); if (c) c.classList.toggle('bw', self.isActive); }});
+  var bw=function(on){ return function(){ var c=document.querySelector('.crowd'); if (c) c.classList.toggle('bw', on); }; };
+  ScrollTrigger.create({trigger:'.rel', start:'top 70%', end:'bottom 30%', onEnter:bw(true), onEnterBack:bw(true), onLeave:bw(false), onLeaveBack:bw(false)});
 
   // ===== foto en vivo: parallax suave =====
   gsap.to('.live .vid',{yPercent:12, ease:'none', scrollTrigger:{trigger:'.live', start:'top bottom', end:'bottom top', scrub:true}});
