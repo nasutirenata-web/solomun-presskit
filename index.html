@@ -249,15 +249,32 @@ img.src-art{display:none!important}
 .wmr.r2{--wx:calc(var(--sp,0)*1px - 55%)}
 .wmr.r3{--wx:calc(var(--sp,0)*-1.4px - 30%)}
 .tour>*:not(.wm){position:relative;z-index:1}
+
+/* aura de la bailarina de Miami: amarillo, naranja y rojo que se mueven hacia los extremos */
+.aura{position:absolute;inset:-14% calc(var(--pad)*-1);z-index:0;overflow:hidden;pointer-events:none}
+.aura i{position:absolute;border-radius:50%;filter:blur(48px);will-change:transform}
+.aura .a1{width:50vw;height:50vw;left:-6vw;top:0%;background:radial-gradient(circle,#ffd21a 0,rgba(255,210,26,0) 68%);opacity:1;animation:auraL 9s ease-in-out infinite alternate}
+.aura .a2{width:46vw;height:46vw;right:-5vw;top:30%;background:radial-gradient(circle,#ff7a1a 0,rgba(255,122,26,0) 68%);opacity:1;animation:auraR 11s ease-in-out infinite alternate}
+.aura .a3{width:46vw;height:46vw;left:8%;bottom:-8vw;background:radial-gradient(circle,#ff2d2d 0,rgba(255,45,45,0) 66%);opacity:.95;animation:auraL 13s ease-in-out infinite alternate-reverse}
+.aura .a4{width:40vw;height:40vw;right:6%;bottom:-4vw;background:radial-gradient(circle,#ffb11a 0,rgba(255,177,26,0) 66%);opacity:.95;animation:auraR 10s ease-in-out infinite alternate-reverse}
+@keyframes auraL{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-9vw,4vw) scale(1.18)}}
+@keyframes auraR{0%{transform:translate(0,0) scale(1)}100%{transform:translate(9vw,-4vw) scale(1.18)}}
+.tour>*:not(.wm){position:relative;z-index:1}
+.deck{position:relative}
+.deck>*:not(.aura){position:relative;z-index:1}
+
+/* logo de Solomun (el manuscrito de su perfil), del color del texto */
+.bar .logo{display:inline-flex;align-items:center;height:38px;font-size:0}
+.bar .logo-img{display:block;height:32px;aspect-ratio:447/140;background:currentColor;-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat}
 </style>
-<link rel="stylesheet" href="experience.css?v=33">
+<link rel="stylesheet" href="experience.css?v=37">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
 <div class="crowd" aria-hidden="true"><div class="grp g1"></div><div class="grp g2"></div></div>
 
 <header class="bar">
-  <a href="#top" class="logo">Solomun</a>
+  <a href="#top" class="logo" aria-label="Solomun"><span class="logo-img"></span></a>
   <nav>
     <a href="#bio">Bio</a><a href="#fechas">Fechas</a><a href="#musica">Música</a><a href="#booking" class="cta">Booking</a>
   </nav>
@@ -310,7 +327,7 @@ img.src-art{display:none!important}
     <h2 class="big">Around<br><em class="s">the world</em></h2>
     <p>Su mazo de flyers</p>
   </div>
-  <div class="deck" id="deck">
+  <div class="deck" id="deck"><div class="aura" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i></div>
     <div class="deck-stage" tabindex="0" aria-label="Flyers: arrastrá, tocá o usá las flechas">
       <button class="card" type="button" data-i="0" aria-label="South America"><img src="img/flyer-tour-sudamerica.png" alt="Flyer South America" draggable="false"></button>
       <button class="card" type="button" data-i="1" aria-label="Mendoza"><img src="img/flyer-mendoza.png" alt="Flyer Mendoza" draggable="false"></button>
