@@ -32,7 +32,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:n
 .mono.idx{font-family:var(--sans);font-stretch:125%;font-weight:600;letter-spacing:.24em;font-size:11px}
 
 /* ===== siluetas del flyer (fondo fijo que se mueve y cambia de color) ===== */
-.crowd{overflow:hidden;position:fixed;left:0;right:0;bottom:0;height:62vh;z-index:0;pointer-events:none;opacity:.92;filter:blur(.6px) saturate(1.25);
+.crowd{overflow:hidden;position:fixed;left:0;right:0;bottom:0;height:76vh;z-index:0;pointer-events:none;opacity:.92;filter:blur(.6px) saturate(1.25);
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%);mask-image:linear-gradient(180deg,transparent 0,#000 14%)}
 .crowd .grp{position:absolute;top:0;bottom:0;left:-5%;right:-5%;will-change:transform}
 .crowd .g1{transform-origin:50% 100%;animation:sway1 .95s ease-in-out infinite alternate}
@@ -97,9 +97,14 @@ img.src-art{display:none!important}
 }
 
 /* ===== marquee (franja que invierte los colores) ===== */
-.marquee{background:var(--fg);color:var(--bg);overflow:hidden;white-space:nowrap;padding:16px 0}
-.marquee div{display:inline-block;animation:mq 38s linear infinite;font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;font-size:clamp(20px,2.6vw,36px);letter-spacing:-.01em}
-.marquee span{margin:0 28px}
+.marquee{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border-block:1px solid rgba(255,255,255,.3);color:var(--fg);overflow:hidden;white-space:nowrap;padding:20px 0;position:relative;z-index:2}
+.marquee div{display:inline-block;will-change:transform;font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;font-size:clamp(20px,2.6vw,36px);letter-spacing:-.01em}
+.marquee span{margin:0 28px;transition:color .3s,-webkit-text-stroke-color .3s}
+.marquee span:nth-child(4n+1){color:transparent;-webkit-text-stroke:1.3px var(--fg)}
+.marquee span:nth-child(4n+3){color:var(--fg)}
+.marquee span:nth-child(even){display:inline-block;animation:spinstar 6s linear infinite;font-size:.7em}
+.marquee span:nth-child(4n+1):hover{color:var(--fg)}
+@keyframes spinstar{to{rotate:360deg}}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* ===== flyers ===== */
@@ -275,7 +280,7 @@ img.src-art{display:none!important}
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true"><div>
+<div class="marquee"><div>
   <span>DJ del Año · Mixmag 2012</span><span>✦</span><span>Diynamic</span><span>✦</span><span>Solomun +1 · Pacha</span><span>✦</span><span>Mejor productor · DJ Awards 2012</span><span>✦</span><span>Remix del Año · RA 2011</span><span>✦</span>
   <span>DJ del Año · Mixmag 2012</span><span>✦</span><span>Diynamic</span><span>✦</span><span>Solomun +1 · Pacha</span><span>✦</span><span>Mejor productor · DJ Awards 2012</span><span>✦</span><span>Remix del Año · RA 2011</span><span>✦</span>
 </div></div>
@@ -556,5 +561,6 @@ img.src-art{display:none!important}
 </script>
 <script src="experience.js?v=4"></script>
 <script src="deck.js?v=1"></script>
+<script src="band.js?v=1"></script>
 </body>
 </html>
