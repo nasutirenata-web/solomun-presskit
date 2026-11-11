@@ -175,26 +175,52 @@ img.src-art{display:none!important}
 
 @media(prefers-reduced-motion:reduce){.marquee div{animation:none}}
 
-/* ===== discos: funda + vinilo que sale y gira ===== */
-.crate{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3.4vw,56px);padding:10px 0 20px}
-.rec{position:relative;display:block;color:inherit;text-decoration:none}
-.rec .sleeve{position:relative;z-index:2;display:block;aspect-ratio:1;box-shadow:0 18px 40px rgba(0,0,0,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.rec .sleeve img{width:100%;height:100%;object-fit:cover;display:block}
-.rec .vinyl{position:absolute;z-index:1;top:3%;left:3%;width:94%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,var(--ink) 0 3%,transparent 3.2%),radial-gradient(circle,transparent 0 31%,#c9c4b6 31.2% 32%,transparent 32.2%),var(--cov) center/32% no-repeat,
-   repeating-radial-gradient(circle,#0b0b0b 0 2px,#1b1b1b 2px 3px);
-  box-shadow:0 8px 24px rgba(0,0,0,.6);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.rec .vinyl::after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,transparent 0 20%,rgba(255,255,255,.14) 25%,transparent 32% 70%,rgba(255,255,255,.1) 76%,transparent 82%)}
-.rec:hover .vinyl,.rec:focus-visible .vinyl,.rec.on .vinyl{transform:translateX(42%);animation:spin 2.4s linear infinite}
-.rec:hover .sleeve,.rec:focus-visible .sleeve,.rec.on .sleeve{transform:translateX(-8%) rotate(-2deg)}
-@keyframes spin{to{transform:translateX(42%) rotate(360deg)}}
-.rec .cap{display:flex;flex-direction:column;gap:4px;margin-top:20px}
+/* ===== discos: picture discs que giran ===== */
+.crate{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,3vw,48px);padding:20px 0 10px}
+.rec{position:relative;display:block;color:inherit;text-decoration:none;text-align:center}
+.rec .sleeve{display:none}
+.rec .vinyl{position:relative;display:block;width:100%;aspect-ratio:1;border-radius:50%;background:var(--cov) center/cover,#111;
+  box-shadow:0 26px 50px -12px rgba(0,0,0,.75),0 0 0 3px #0a0a0a,0 0 0 4px rgba(255,255,255,.12);
+  animation:spin 9s linear infinite;transition:transform .5s cubic-bezier(.2,.9,.25,1)}
+.rec .vinyl::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-radial-gradient(circle,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.28) 2px 3px),
+   radial-gradient(circle,transparent 0 33%,rgba(0,0,0,.55) 33.4% 34.4%,transparent 35%)}
+.rec .vinyl::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,#0b0b0b 0 4%,#d9d4c4 4.4% 11%,#0b0b0b 11.4% 12.2%,transparent 12.6%),
+   conic-gradient(from 30deg,transparent 0 18%,rgba(255,255,255,.28) 24%,transparent 31% 62%,rgba(255,255,255,.2) 69%,transparent 76%)}
+.rec:hover .vinyl,.rec:focus-visible .vinyl,.rec.on .vinyl{animation-duration:1.8s;transform:scale(1.07)}
+@keyframes spin{to{rotate:360deg}}
+.rec .cap{display:flex;flex-direction:column;gap:4px;margin-top:22px}
 .rec .cap b{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.4vw,36px);line-height:1}
 .rec .cap i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
 .crate-hint{margin-top:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
-@media(max-width:760px){.crate{grid-template-columns:1fr 1fr;row-gap:34px}.rec .vinyl{animation:spin 6s linear infinite;transform:translateX(30%)}@keyframes spin{to{transform:translateX(30%) rotate(360deg)}}}
+@media(max-width:760px){.crate{grid-template-columns:1fr 1fr;row-gap:30px}}
+
+/* ===== mazo de flyers interactivo ===== */
+.deck{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:center;padding:30px var(--pad) clamp(50px,7vw,110px)}
+.deck-stage{position:relative;height:min(78vh,720px);outline:none;touch-action:pan-y;user-select:none}
+.card{position:absolute;left:50%;top:50%;height:88%;aspect-ratio:.8;padding:0;border:0;background:none;cursor:grab;transition:transform .6s cubic-bezier(.2,.9,.25,1),opacity .4s;will-change:transform}
+.card img{height:100%;width:100%;object-fit:contain;display:block;box-shadow:0 30px 60px -18px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.card.drag{transition:none;cursor:grabbing}
+.deck-now{font-size:12px;letter-spacing:.2em;opacity:.7}
+.deck-side h3{font-size:clamp(34px,5.4vw,84px);margin:8px 0 6px}
+#deck-date{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac)}
+.deck-list{list-style:none;margin:28px 0 24px;border-top:1px solid color-mix(in srgb,currentColor 25%,transparent)}
+.deck-list button{width:100%;display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:13px 0;background:none;border:0;border-bottom:1px solid color-mix(in srgb,currentColor 25%,transparent);color:inherit;cursor:pointer;text-align:left;font:inherit;transition:padding .3s,color .3s}
+.deck-list button b{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.2vw,30px)}
+.deck-list button i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.deck-list button:hover,.deck-list button.on{padding-left:14px;color:var(--ac)}
+.deck-ctrl{display:flex;gap:10px;flex-wrap:wrap}
+.deck-ctrl .btn{color:inherit;border-color:currentColor;background:transparent;cursor:pointer}
+.deck-ctrl .btn:hover{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.deck-hint{margin-top:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+.lightbox .btn{position:absolute;top:18px;right:18px;color:#f4f1ea;border-color:#f4f1ea;background:transparent}
+@media(max-width:820px){.deck{grid-template-columns:1fr}.deck-stage{height:min(62vh,520px)}}
 </style>
-<link rel="stylesheet" href="experience.css?v=3">
+<link rel="stylesheet" href="experience.css?v=4">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -256,17 +282,36 @@ img.src-art{display:none!important}
   <div class="tour-head">
     <p class="mono idx" data-n="02">Fechas</p>
     <h2 class="big">Around<br><em class="s">the world</em></h2>
-    <p>Los flyers de sus shows, todos juntos. Sudamérica, fin de año en Mendoza y Punta del Este, Mar del Plata y Diynamic Miami.</p>
+    <p>Su mazo de flyers. Arrastrá, tocá o elegí una ciudad.</p>
   </div>
-  <div class="rail-wrap">
-    <div class="rail" id="rail">
-      <figure class="flyer"><img src="img/flyer-tour-sudamerica.png" alt="Flyer South America Shows" loading="lazy"><figcaption class="mono"><span>South America</span><span>Oct 26 — Ene 27</span></figcaption></figure>
-      <figure class="flyer"><img src="img/flyer-mendoza.png" alt="Flyer Solomun Mendoza" loading="lazy"><figcaption class="mono"><span>Mendoza</span><span>31 dic 2026</span></figcaption></figure>
-      <figure class="flyer"><img src="img/flyer-punta-del-este.png" alt="Flyer Solomun Punta del Este" loading="lazy"><figcaption class="mono"><span>Punta del Este</span><span>29 dic 2026</span></figcaption></figure>
-      <figure class="flyer"><img src="img/flyer-mar-del-plata.png" alt="Flyer Solomun Mar del Plata" loading="lazy"><figcaption class="mono"><span>Mar del Plata</span><span>2 ene 2027</span></figcaption></figure>
-      <figure class="flyer"><img src="img/flyer-diynamic-miami.png" alt="Flyer Diynamic Miami" loading="lazy"><figcaption class="mono"><span>Diynamic Miami</span><span>4 dic 2026</span></figcaption></figure>
+  <div class="deck" id="deck">
+    <div class="deck-stage" tabindex="0" aria-label="Flyers: arrastrá, tocá o usá las flechas">
+      <button class="card" type="button" data-i="0" aria-label="South America"><img src="img/flyer-tour-sudamerica.png" alt="Flyer South America" draggable="false"></button>
+      <button class="card" type="button" data-i="1" aria-label="Mendoza"><img src="img/flyer-mendoza.png" alt="Flyer Mendoza" draggable="false"></button>
+      <button class="card" type="button" data-i="2" aria-label="Punta del Este"><img src="img/flyer-punta-del-este.png" alt="Flyer Punta del Este" draggable="false"></button>
+      <button class="card" type="button" data-i="3" aria-label="Mar del Plata"><img src="img/flyer-mar-del-plata.png" alt="Flyer Mar del Plata" draggable="false"></button>
+      <button class="card" type="button" data-i="4" aria-label="Diynamic Miami"><img src="img/flyer-diynamic-miami.png" alt="Flyer Diynamic Miami" draggable="false"></button>
+    </div>
+    <div class="deck-side">
+      <p class="deck-now mono"><span id="deck-n">01</span> / 05</p>
+      <h3 class="big" id="deck-city">South America</h3>
+      <p class="mono" id="deck-date">Oct 26 — Ene 27</p>
+      <ul class="deck-list">
+        <li><button type="button" data-i="0"><b>South America</b><i class="mono">Oct 26 — Ene 27</i></button></li>
+        <li><button type="button" data-i="1"><b>Mendoza</b><i class="mono">31 dic 2026</i></button></li>
+        <li><button type="button" data-i="2"><b>Punta del Este</b><i class="mono">29 dic 2026</i></button></li>
+        <li><button type="button" data-i="3"><b>Mar del Plata</b><i class="mono">2 ene 2027</i></button></li>
+        <li><button type="button" data-i="4"><b>Diynamic Miami</b><i class="mono">4 dic 2026</i></button></li>
+      </ul>
+      <div class="deck-ctrl">
+        <button type="button" class="btn" id="deck-prev" aria-label="Anterior">←</button>
+        <button type="button" class="btn" id="deck-next" aria-label="Siguiente">→</button>
+        <button type="button" class="btn" id="deck-zoom">Ver flyer grande ⤢</button>
+      </div>
+      <p class="mono deck-hint">Arrastrá el flyer · tocá para pasar</p>
     </div>
   </div>
+  <div class="lightbox" id="lightbox" hidden><img alt=""><button type="button" class="btn" aria-label="Cerrar">Cerrar ✕</button></div>
 </section>
 
 <section class="dates" id="calendario">
@@ -307,7 +352,7 @@ img.src-art{display:none!important}
       <span class="sleeve"><img src="img/discos/ninl.jpg" alt="Tapa de Nobody Is Not Loved" loading="lazy"></span>
       <span class="cap"><b>Nobody Is Not Loved</b><i class="mono">Álbum · NINL · 2021</i></span></a>
   </div>
-  <p class="mono crate-hint">Pasá el mouse o tocá un disco · abre en Spotify ↗</p>
+  <p class="mono crate-hint">Los discos giran · tocá uno y abre en Spotify ↗</p>
 </section>
 
 <!-- ===== ESCENA ===== -->
@@ -500,6 +545,7 @@ img.src-art{display:none!important}
   gsap.to('.live img',{yPercent:12, ease:'none', scrollTrigger:{trigger:'.live', start:'top bottom', end:'bottom top', scrub:true}});
 })();
 </script>
-<script src="experience.js?v=3"></script>
+<script src="experience.js?v=4"></script>
+<script src="deck.js?v=1"></script>
 </body>
 </html>
