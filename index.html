@@ -194,7 +194,7 @@ img.src-art{display:none!important}
 .crate-hint{margin-top:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
 @media(max-width:760px){.crate{grid-template-columns:1fr 1fr;row-gap:34px}.rec .vinyl{animation:spin 6s linear infinite;transform:translateX(30%)}@keyframes spin{to{transform:translateX(30%) rotate(360deg)}}}
 </style>
-<link rel="stylesheet" href="experience.css">
+<link rel="stylesheet" href="experience.css?v=3">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -228,7 +228,6 @@ img.src-art{display:none!important}
       <div class="btns">
         <a class="btn solid" href="#booking">Booking</a>
         <a class="btn" href="https://linkin.bio/solomun" target="_blank" rel="noopener">Escuchar</a>
-        <button class="btn motion-toggle" type="button" hidden>Pausar imagen</button>
       </div>
     </div>
 
@@ -501,6 +500,6 @@ img.src-art{display:none!important}
   gsap.to('.live img',{yPercent:12, ease:'none', scrollTrigger:{trigger:'.live', start:'top bottom', end:'bottom top', scrub:true}});
 })();
 </script>
-<script src="experience.js"></script>
+<script src="experience.js?v=3"></script>
 </body>
 </html>

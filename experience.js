@@ -1,15 +1,5 @@
-const motionToggle = document.querySelector('.motion-toggle');
 const figure = document.querySelector('.fig-in');
-const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-
-function setMotionPaused(paused) {
-  figure.dataset.paused = String(paused);
-  motionToggle.textContent = paused ? 'Reproducir imagen' : 'Pausar imagen';
-}
-
-setMotionPaused(false);
-motionToggle.hidden = false;
-motionToggle.addEventListener('click', () => setMotionPaused(figure.dataset.paused !== 'true'));
+if (figure) figure.dataset.paused = 'false';   // Solomun siempre en movimiento
 
 const archive = document.querySelector('.tour-archive');
 if (archive) {
