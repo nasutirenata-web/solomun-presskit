@@ -87,3 +87,29 @@ if (navigator.clipboard?.writeText) {
     link.after(button);
   }
 }
+
+/* ===== el cursor mueve a Solomun + lente amarilla (radiografía) ===== */
+(function(){
+  var stage = document.querySelector('.stage'), fig = document.querySelector('.stage .figure');
+  if (!stage || !fig || !window.gsap) return;
+  var lens = document.createElement('div');
+  lens.className = 'lens'; lens.setAttribute('aria-hidden','true');
+  stage.appendChild(lens);
+  var fine = matchMedia('(pointer:fine)').matches;
+  var qx = gsap.quickTo(fig,'x',{duration:.9,ease:'power3.out'}),
+      qy = gsap.quickTo(fig,'y',{duration:.9,ease:'power3.out'}),
+      qr = gsap.quickTo(fig,'rotation',{duration:1.1,ease:'power3.out'}),
+      lx = gsap.quickTo(lens,'x',{duration:.25,ease:'power3.out'}),
+      ly = gsap.quickTo(lens,'y',{duration:.25,ease:'power3.out'});
+  gsap.set(fig,{scale:1.08,transformOrigin:'50% 40%'});
+  function move(e){
+    var r = stage.getBoundingClientRect(), nx = (e.clientX-r.left)/r.width-.5, ny = (e.clientY-r.top)/r.height-.5;
+    qx(-nx*70); qy(-ny*40); qr(nx*3);
+    lx(e.clientX-r.left); ly(e.clientY-r.top);
+    lens.style.opacity = 1;
+  }
+  stage.addEventListener('pointermove',move);
+  stage.addEventListener('pointerdown',move);
+  stage.addEventListener('pointerleave',function(){ qx(0);qy(0);qr(0); lens.style.opacity = 0; });
+  stage.addEventListener('pointerdown',function(){ gsap.fromTo(lens,{scale:1},{scale:1.9,duration:.25,yoyo:true,repeat:1,ease:'power2.out'}); });
+})();

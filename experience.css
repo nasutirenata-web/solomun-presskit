@@ -109,3 +109,9 @@ section[id] { scroll-margin-top: 65px; }
 @media (prefers-reduced-motion: reduce) {
   .crowd .grp { animation: none; }
 }
+
+/* lente amarilla que sigue al cursor sobre la portada */
+.stage .lens{position:absolute;left:-130px;top:-130px;width:260px;height:260px;border-radius:50%;z-index:3;pointer-events:none;opacity:0;
+  background:radial-gradient(circle,rgba(233,228,118,.95) 0%,rgba(233,228,118,.75) 45%,rgba(233,228,118,0) 70%);mix-blend-mode:multiply;transition:opacity .3s}
+.stage .lens::after{content:"";position:absolute;inset:38%;border-radius:50%;border:1px solid #111;opacity:.6}
+@media (pointer:coarse){.stage .lens{display:none}}
