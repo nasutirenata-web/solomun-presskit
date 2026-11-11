@@ -87,3 +87,5 @@ section[id] { scroll-margin-top: 65px; }
 
 .book .cell a:hover{background:none;color:inherit;border-bottom-color:rgba(255,255,255,.9)}
 .copy-status{display:none}
+
+.bar,.bar a,.bar .logo{color:var(--fg)!important}
