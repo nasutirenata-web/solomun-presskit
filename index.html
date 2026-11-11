@@ -324,8 +324,15 @@ img.src-art{display:none!important}
 @media(max-width:640px){.dates li{grid-template-columns:78px 1fr!important}.dates li .trk{display:none}.dates li.next::before{left:-12px}}
 
 .live .lema{margin-top:18px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+
+/* títulos de sección más chicos y finos (escala delicada) */
+.tour-head h2,.rel h2,.book h2,.live .cap h2,.dates h3,.finale h2,.tour-head .big,.book .big,.finale .big:not(.wordmark){
+  font-size:clamp(34px,4.6vw,70px)!important;font-weight:700!important;font-stretch:112%!important;letter-spacing:-.015em!important;line-height:.98!important}
+.book h2 .s,.tour-head h2 .s,.live .cap h2 .s{font-size:.96em}
+.book h2 .nm{font-size:1.18em}
+.finale .wordmark{font-size:clamp(46px,9vw,150px)!important}
 </style>
-<link rel="stylesheet" href="experience.css?v=53">
+<link rel="stylesheet" href="experience.css?v=54">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
