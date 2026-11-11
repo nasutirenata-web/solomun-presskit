@@ -28,7 +28,7 @@ main{position:relative;z-index:1}
 .big{font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:-.03em}
 em.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .idx{display:inline-flex;align-items:center;gap:10px}
-.idx::before{content:attr(data-n);border:1px solid currentColor;border-radius:99px;padding:1px 6px;font:italic 9px var(--serif)}
+.idx::before{display:none}
 .mono.idx{font-family:var(--sans);font-stretch:125%;font-weight:600;letter-spacing:.24em;font-size:11px}
 
 /* ===== siluetas del flyer (fondo fijo que se mueve y cambia de color) ===== */
@@ -97,10 +97,10 @@ img.src-art{display:none!important}
 }
 
 /* ===== marquee (franja que invierte los colores) ===== */
-.marquee{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border-block:1px solid rgba(255,255,255,.3);color:var(--fg);overflow:hidden;white-space:nowrap;padding:20px 0;position:relative;z-index:2}
-.marquee div{display:inline-block;will-change:transform;font-family:var(--sans);font-stretch:125%;font-weight:900;text-transform:uppercase;font-size:clamp(20px,2.6vw,36px);letter-spacing:-.01em}
+.marquee{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border-block:1px solid rgba(255,255,255,.3);color:var(--fg);overflow:hidden;white-space:nowrap;padding:clamp(28px,4vw,52px) 0;position:relative;z-index:2}
+.marquee div{display:inline-block;will-change:transform;font-family:var(--serif);font-style:italic;font-stretch:100%;font-weight:400;text-transform:none;font-size:clamp(36px,5.4vw,84px);letter-spacing:-.015em;line-height:1.1}
 .marquee span{margin:0 28px;transition:color .3s,-webkit-text-stroke-color .3s}
-.marquee span:nth-child(4n+1){color:transparent;-webkit-text-stroke:1.3px var(--fg)}
+.marquee span:nth-child(4n+1){color:transparent;-webkit-text-stroke:.8px var(--fg)}
 .marquee span:nth-child(4n+3){color:var(--fg)}
 .marquee span:nth-child(even){display:inline-block;animation:spinstar 6s linear infinite;font-size:.7em}
 .marquee span:nth-child(4n+1):hover{color:var(--fg)}
@@ -542,8 +542,6 @@ img.src-art{display:none!important}
       .to('.mega',{yPercent:-70, opacity:0, duration:.7, ease:'power1.in'},0)
       .to('.sub',{yPercent:-120, opacity:0, duration:.6, ease:'power1.in'},0)
       .to('.hero-meta',{opacity:0, y:30, duration:.4},0)
-      .to('.wash',{opacity:1, duration:.8, ease:'none'},.6)
-      .to('.fig-in canvas, .fig-in img',{filter:'grayscale(1) contrast(1.75) brightness(1.6)', duration:.8, ease:'none'},.6)   // más luz para que el amarillo se lea como radiografía
       .fromTo('.bio-copy',{opacity:0, y:40},{opacity:1, y:0, duration:.8, ease:'power2.out'},1.35)
       .to({}, {duration:.6});    // pausa para leer
   }
