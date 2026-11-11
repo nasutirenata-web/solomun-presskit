@@ -13,7 +13,7 @@
     var arr=[];
     for(var i=0;i<N;i++){
       var s=document.createElement('div'); s.className='sl';
-      var top=(i/N*100-1.3).toFixed(2), bot=(100-(i+1)/N*100-1.3).toFixed(2);
+      var top=(i/N*100-.5).toFixed(2), bot=(100-(i+1)/N*100-.5).toFixed(2);
       s.style.cssText='position:absolute;inset:0;background:url('+url+') center bottom/100% 100% no-repeat;will-change:transform;clip-path:inset('+Math.max(0,top)+'% 0 '+Math.max(0,bot)+'% 0)';
       host.appendChild(s); arr.push({el:s,h:1-(i+.5)/N});   // h: 0 en los pies, 1 en la cabeza
     }
