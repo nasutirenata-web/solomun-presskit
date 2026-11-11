@@ -5,20 +5,19 @@
   var styles=[{w:2.6,A:9,J:1.5,tw:0},{w:4.2,A:4,J:6,tw:0},{w:3.0,A:6,J:2,tw:7},{w:2.0,A:11,J:2.5,tw:3}];
   var stages=[];
 
-  function build(selector, color, hpct){
+  function build(selector, colors){
     var sec=document.querySelector(selector); if(!sec) return;
     var wrap=document.createElement('div'); wrap.className='bk'; wrap.setAttribute('aria-hidden','true');
-    wrap.style.height=hpct+'%'; wrap.style.setProperty('--bk',color);
-    sec.insertBefore(wrap,sec.firstChild);
+        sec.insertBefore(wrap,sec.firstChild);
     var dancers=[], k=0;
     [0,1].forEach(function(gi){
       var g=document.createElement('div'); g.className='bkg bkg'+gi; wrap.appendChild(g);
       for(var d=0; d<4; d++){
-        var host=document.createElement('div'); host.className='bkd'; g.appendChild(host);
+        var host=document.createElement('div'); host.className='bkd'; host.style.setProperty('--bk',colors[(d+gi*2)%colors.length]); g.appendChild(host);
         var url='url(img/baila-'+(d+1)+'.png)', arr=[];
         for(var i=0;i<N;i++){
           var s=document.createElement('div'); s.className='bks';
-          var top=Math.max(0,(i/N*100-.5)).toFixed(2), bot=Math.max(0,(100-(i+1)/N*100-.5)).toFixed(2);
+          var top=Math.max(0,(i/N*100-1.3)).toFixed(2), bot=Math.max(0,(100-(i+1)/N*100-1.3)).toFixed(2);
           s.style.cssText='clip-path:inset('+top+'% 0 '+bot+'% 0);-webkit-mask-image:'+url+';mask-image:'+url;
           host.appendChild(s); arr.push({el:s,h:1-(i+.5)/N});
         }
@@ -30,8 +29,9 @@
     stages.push(st);
   }
 
-  build('.book','#5e7df2',62);
-  build('.finale','#ff6a2c',56);
+  // colores de sus flyers: azul de Mar del Plata, coral de Punta del Este, naranja de Miami, menta de Mendoza, verde lima de la gira
+  build('.book',['#6f8df0','#ff7d73','#ff6a2c','#3f5bd8']);
+  build('.finale',['#cfd400','#6fe3b3','#ff7d73','#7c98ff']);
 
   var T=1.7, SPEED=1.5;
   (function frame(ms){

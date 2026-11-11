@@ -252,12 +252,12 @@ img.src-art{display:none!important}
 .card:hover::after{opacity:1}
 
 /* personas de un color bailando en Booking (azul) y Créditos (naranja) */
-.book,.finale{position:relative;isolation:isolate}
+.book,.finale{position:relative;isolation:isolate;overflow:hidden}
 .book>*:not(.bk),.finale>*:not(.bk){position:relative;z-index:1}
-.bk{position:absolute;left:0;right:0;bottom:0;z-index:0!important;pointer-events:none;overflow:hidden}
-.bkg{position:absolute;bottom:0;height:100%;aspect-ratio:1080/745}
-.bkg0{left:0;opacity:.85}
-.bkg1{right:0;transform:scaleX(-1);opacity:.65}
+.bk{position:absolute;left:0;right:0;bottom:0;height:calc(50vw*745/1080);max-height:100%;z-index:0!important;pointer-events:none;overflow:hidden}
+.bkg{position:absolute;bottom:0;width:52vw;aspect-ratio:1080/745}
+.bkg0{left:-3vw;opacity:.95}
+.bkg1{right:-3vw;transform:scaleX(-1);opacity:.9}
 .bkd{position:absolute;inset:0}
 .bks{position:absolute;inset:0;background:var(--bk);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center bottom;mask-position:center bottom;will-change:transform}
 </style>
@@ -589,7 +589,7 @@ img.src-art{display:none!important}
 <script src="experience.js?v=5"></script>
 <script src="deck.js?v=2"></script>
 <script src="live.js?v=1"></script>
-<script src="dance.js?v=2"></script>
-<script src="book-dance.js?v=2"></script>
+<script src="dance.js?v=3"></script>
+<script src="book-dance.js?v=4"></script>
 </body>
 </html>
