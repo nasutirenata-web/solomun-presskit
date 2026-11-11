@@ -7,12 +7,12 @@ function setMotionPaused(paused) {
   motionToggle.textContent = paused ? 'Reproducir imagen' : 'Pausar imagen';
 }
 
-setMotionPaused(reducedMotion.matches);
+setMotionPaused(false);
 motionToggle.hidden = false;
 motionToggle.addEventListener('click', () => setMotionPaused(figure.dataset.paused !== 'true'));
-reducedMotion.addEventListener('change', event => setMotionPaused(event.matches));
 
 const archive = document.querySelector('.tour-archive');
+if (archive) {
 const selector = archive.querySelector('.tour-select');
 const flyers = [...archive.querySelectorAll('.flyer')];
 const showColors = ['#e9e476', '#aee7c5', '#e9b8b0', '#becbf1', '#99ddfe'];
@@ -39,6 +39,7 @@ showButtons.forEach((button, index) => button.addEventListener('click', () => sh
 showFlyer(0);
 archive.classList.add('is-interactive');
 selector.hidden = false;
+}
 
 const listeningRoom = document.querySelector('.listening-room');
 const recordLabel = listeningRoom.querySelector('.record-display span');
