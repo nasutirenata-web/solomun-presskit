@@ -44,9 +44,9 @@ if (navigator.clipboard?.writeText) {
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(link.textContent.trim());
-        copyStatus.textContent = 'Copiado: ' + link.textContent.trim();
+        button.textContent = 'Copiado ✓'; button.classList.add('ok'); setTimeout(() => { button.textContent = 'Copiar correo'; button.classList.remove('ok'); }, 1800);
       } catch {
-        copyStatus.textContent = 'No se pudo copiar. Seleccioná la dirección para copiarla.';
+        button.textContent = 'Seleccioná el correo'; setTimeout(() => { button.textContent = 'Copiar correo'; }, 2200);
       }
     });
     link.after(button);
