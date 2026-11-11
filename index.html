@@ -142,16 +142,17 @@ img.src-art{display:none!important}
 .dates{padding:clamp(48px,7vw,100px) var(--pad)}
 .dates h3{font-size:clamp(34px,6vw,96px);margin-bottom:28px}
 .dates ul{list-style:none;border-top:2px solid currentColor}
-.dates li{display:grid;grid-template-columns:110px 1.2fr 1.6fr 60px;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid currentColor}
+.dates li{display:grid;grid-template-columns:110px 1.2fr 1.6fr 100px;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid currentColor}
 .dates li{border-bottom-color:color-mix(in srgb,currentColor 28%,transparent)}
 .dates li .city{font-family:var(--sans);font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:clamp(18px,2.2vw,30px);line-height:1}
 .dates li .venue{font-family:var(--serif);font-size:clamp(18px,1.9vw,26px)}
-.dates li .tag{justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.dates li .tag{white-space:nowrap;justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.12em}
 .dates li.past{opacity:.4}
 .dates li.past .tag::after{content:"pasó"}
-.dates li:not(.past) .tag::after{content:"próx."}
-.dates li:not(.past) .tag{border:1px solid currentColor;border-radius:99px;padding:2px 10px}
-@media(max-width:640px){.dates li{grid-template-columns:78px 1fr;grid-template-areas:"d c" "d v"}.dates li .d{grid-area:d}.dates li .city{grid-area:c}.dates li .venue{grid-area:v}.dates li .tag{display:none}}
+.dates li:not(.past) span.tag::after{content:"próx."}
+.dates li:not(.past) .tag{border:1px solid currentColor;border-radius:99px;padding:2px 10px;text-decoration:none;color:inherit;text-transform:uppercase;transition:background .25s,color .25s}
+.dates li a.tag:hover{background:var(--fg);color:var(--bg)}
+@media(max-width:640px){.dates li{grid-template-columns:78px 1fr;grid-template-areas:"d c" "d v"}.dates li .d{grid-area:d}.dates li .city{grid-area:c}.dates li .venue{grid-area:v}.dates li.past .tag{display:none}.dates li a.tag{grid-column:2;justify-self:start;margin-top:6px}}
 .dates .src{margin-top:18px;opacity:.6}
 
 /* ===== lanzamientos ===== */
@@ -358,10 +359,10 @@ img.src-art{display:none!important}
     <li data-date="2026-10-30"><span class="d mono">30/10/26</span><span class="city">Santiago</span><span class="venue">Espacio Riesco</span><span class="tag mono"></span></li>
     <li data-date="2026-10-31"><span class="d mono">31/10/26</span><span class="city">Curitiba</span><span class="venue">Pedreira Paulo Leminski</span><span class="tag mono"></span></li>
     <li data-date="2026-11-01"><span class="d mono">01/11/26</span><span class="city">São Paulo</span><span class="venue">Parque Villa-Lobos</span><span class="tag mono"></span></li>
-    <li data-date="2026-12-04"><span class="d mono">04/12/26</span><span class="city">Diynamic Miami</span><span class="venue">Factory Town · Insomniac</span><span class="tag mono"></span></li>
-    <li data-date="2026-12-29"><span class="d mono">29/12/26</span><span class="city">Punta del Este</span><span class="venue">Open Park</span><span class="tag mono"></span></li>
-    <li data-date="2026-12-31"><span class="d mono">31/12/26</span><span class="city">Mendoza</span><span class="venue">Teatro Griego Frank Romero Day</span><span class="tag mono"></span></li>
-    <li data-date="2027-01-02"><span class="d mono">02/01/27</span><span class="city">Mar del Plata</span><span class="venue">Mute</span><span class="tag mono"></span></li>
+    <li data-date="2026-12-04"><span class="d mono">04/12/26</span><span class="city">Diynamic Miami</span><span class="venue">Factory Town · Insomniac</span><a class="tag mono" href="https://app.discotech.me/events/38294288-factory-basel-2026-friday-pass-at-factory-town" target="_blank" rel="noopener" aria-label="Comprar entradas">próx. ↗</a></li>
+    <li data-date="2026-12-29"><span class="d mono">29/12/26</span><span class="city">Punta del Este</span><span class="venue">Open Park</span><a class="tag mono" href="https://linkin.bio/solomun" target="_blank" rel="noopener" aria-label="Comprar entradas">próx. ↗</a></li>
+    <li data-date="2026-12-31"><span class="d mono">31/12/26</span><span class="city">Mendoza</span><span class="venue">Teatro Griego Frank Romero Day</span><a class="tag mono" href="https://linkin.bio/solomun" target="_blank" rel="noopener" aria-label="Comprar entradas">próx. ↗</a></li>
+    <li data-date="2027-01-02"><span class="d mono">02/01/27</span><span class="city">Mar del Plata</span><span class="venue">Mute</span><a class="tag mono" href="https://linkin.bio/solomun" target="_blank" rel="noopener" aria-label="Comprar entradas">próx. ↗</a></li>
   </ul>
   <p class="src mono">Fuente: flyers oficiales publicados en @solomun. Fechas sujetas a cambios.</p>
 </section>
