@@ -331,8 +331,17 @@ img.src-art{display:none!important}
 .book h2 .s,.tour-head h2 .s,.live .cap h2 .s{font-size:.96em}
 .book h2 .nm{font-size:1.18em}
 .finale .wordmark{font-size:clamp(46px,9vw,150px)!important}
+
+/* Créditos: texto más chico y fino, y su logo (en vez del cartel gigante) con aire */
+.finale dl{border-top-width:1px!important;max-width:760px}
+.finale dd{font-size:clamp(15px,1.25vw,18px)!important;line-height:1.45!important}
+.finale dt{font-size:11px!important;letter-spacing:.2em}
+.finale .made{font-size:11px!important;letter-spacing:.18em;margin-top:30px}
+.finale .wordmark{font-size:0!important;margin:auto 0 0!important;padding:clamp(40px,6vw,90px) 0 clamp(28px,4vw,56px)!important;text-align:center}
+.wm-logo{display:block;margin:0 auto;width:min(40vw,520px);aspect-ratio:1328/408;background:var(--bone);-webkit-mask:url(img/solomun-logo.png) center/contain no-repeat;mask:url(img/solomun-logo.png) center/contain no-repeat;opacity:.92}
+@media(max-width:560px){.wm-logo{width:min(64vw,320px)}}
 </style>
-<link rel="stylesheet" href="experience.css?v=54">
+<link rel="stylesheet" href="experience.css?v=55">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -503,7 +512,7 @@ img.src-art{display:none!important}
     </dl>
     <p class="made mono">Maqueta no oficial · hecha por Playskit (@playskit.dj) para presentarle a Solomun cómo podría ser su presskit.</p>
   </div>
-  <p class="wordmark big nm" aria-hidden="true">Solomun</p>
+  <p class="wordmark" aria-hidden="true"><span class="wm-logo"></span></p>
 </section>
 </main>
 
